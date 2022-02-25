@@ -12,16 +12,14 @@ public class ManageJourney {
         Statement statement = (Statement) conn.createStatement();
         String query = "select * from journeytbl";
         ResultSet rset = statement.executeQuery(query);
-        System.out.println("JourneyId    from     destination     rout      cost");
+        System.out.printf("\nJourneyId\tfrom\tdestination\trout\tcost");
         while (rset.next()) {
             journeyId = rset.getInt("journeyId");
             From = rset.getString("from");
             Destination = rset.getString("destination");
             RouteInfo = rset.getString("rout");
             cost = rset.getFloat("cost");
-            System.out.println(
-                    journeyId + "     " + From + "                " + Destination + "      " + RouteInfo + "      "
-                            + cost);
+            System.out.printf("\n%d  \t%s \t%s \t%s\t \t%f\n", journeyId, From, Destination, RouteInfo, cost);
         }
         System.out.println();
     };

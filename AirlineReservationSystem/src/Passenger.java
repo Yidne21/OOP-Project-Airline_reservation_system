@@ -11,6 +11,10 @@ public class Passenger extends User {
 
     @Override
     boolean Login(int phonenumber, String passwored) {
+        System.out.println("enter your phone number: ");
+        phonenumber=input.nextInt();
+        System.out.println("enter your password: ");
+        passwored=input.next();
         // TODO Auto-generated method stub
         return true;
     }

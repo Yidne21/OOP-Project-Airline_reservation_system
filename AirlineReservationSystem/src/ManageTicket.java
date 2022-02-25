@@ -15,7 +15,8 @@ public class ManageTicket {
         Statement statement = (Statement) conn.createStatement();
         String query = "select * from tickettbl";
         ResultSet rset = statement.executeQuery(query);
-        System.out.println("TicketID        class      status         seat_no        scheduleId           journeyId");
+        System.out.printf(
+                "\nTicketID\t  class\t     \tstatus\t      \tseat_no\t   \tscheduleId\t   \tjourneyId");
         while (rset.next()) {
             TicketId = rset.getInt("TicketID");
             Class = rset.getString("class");
@@ -23,9 +24,8 @@ public class ManageTicket {
             SeatNumber = rset.getInt("seat_no");
             scheduleId = rset.getInt("schedulId");
             journeyId = rset.getInt("journeyId");
-            System.out.println(
-                    TicketId + "          " + Class + "       " + Status + "     " + SeatNumber + "      "
-                            + scheduleId + "     " + journeyId);
+            System.out.printf("\n%d\t%18s\t%10s\t%7d\t%18d\t%15d\n", TicketId, Class, Status, SeatNumber, scheduleId,
+                    journeyId);
         }
         System.out.println();
     };

@@ -25,7 +25,7 @@ public class Passenger extends User {
         DatabaseConnection connection = new DatabaseConnection();
         // connection.getConnection();
         // strSelect = "select * from journeytbl";
-
+      //do the methods correctly
     };
 
     String BookflightTicket(int PhoneNumber, String Password, int JourneyId, int TicketId, int ScheduleId, String Class,

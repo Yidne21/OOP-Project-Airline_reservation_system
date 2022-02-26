@@ -1,4 +1,4 @@
-
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Admin extends User {
@@ -14,15 +14,15 @@ public class Admin extends User {
 
     Scanner input = new Scanner(System.in);
 
-  @ Override
-boolean Login(int phonenumber, String passwored) {
-    System.out.println("enter phoneNumber: ");
-    phonenumber= input.nextInt();
-    System.out.println("enter password: ");
-    passwored= input.next();
-    // TODO Auto-generated method stub
-    return true;
-}
+    @Override
+    boolean Login(int phonenumber, String passwored) throws ClassNotFoundException, SQLException {
+        System.out.println("enter phoneNumber: ");
+        phonenumber = input.nextInt();
+        System.out.println("enter password: ");
+        passwored = input.next();
+        // TODO Auto-generated method stub
+        return true;
+    }
 
     @Override
     String UpdatePersonalInfo(int phonenumber, String passwored) {

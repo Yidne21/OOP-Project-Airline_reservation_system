@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 
 public abstract class User {
     public String FirstName, LastName, Password, Email, Residence, Nationality;
@@ -17,7 +18,7 @@ public abstract class User {
         this.PhoneNumber = PhoneNumber;
     }
 
-    abstract boolean Login(int phonenumber, String passwored);
+    abstract boolean Login(int phonenumber, String passwored) throws ClassNotFoundException, SQLException;
 
     abstract String Register();
 

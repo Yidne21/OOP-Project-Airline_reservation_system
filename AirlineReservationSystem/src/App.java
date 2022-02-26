@@ -63,40 +63,55 @@ public class App extends DatabaseConnection {
                     // user menu
 
                     boolean login = false;
-                    login = customer.Login(PhoneNumber, Password);
-                    if (login == true) {// check weather the customer passowrd and phonenumber exist or not if exist it
-                                        // returns true
-                        while (logout != true) {
-                            int ch;
-                            System.out.println("Enter 1 to book ticket: ");
-                            System.out.println("Enter 2 to cancel ticket: ");
-                            System.out.println("Enter 3 to update your personal info: ");
-                            System.out.println("Enter 4 to see your ticket info: ");
-                            System.out.println("Enter 5 to logout: ");
-                            ch = input.nextInt();
-                            switch (ch) {
-                                case 1:
-                                    customer.BookflightTicket(PhoneNumber, Password, journeyId, TicketId, scheduleId,
-                                            Class,
-                                            SeatNumber);
-                                    break;
-                                case 2:
-                                    System.out.println(customer.cancelTicket(PhoneNumber, Password, TicketId));
-                                    break;
-                                case 3:
-                                    System.out.println(customer.UpdatePersonalInfo(PhoneNumber, Password));
-                                    break;
-                                case 4:
-                                    customer.ShowMyTicket(PhoneNumber, Password, TicketId);
-                                    break;
-                                case 5:
-                                    System.out.println("logged out succssefuly!: ");
-                                    logout = true;
-                                    break;
+                    while (logout != true) {
+                        login = customer.Login(PhoneNumber, Password);
+                        if (login == true) {// check weather the customer passowrd and phonenumber exist or not if exist
+                            // it
+                            // returns true
+                            while (logout != true) {
+                                System.out.println("------Here is your dashbored choose what ever you want---------");
+                                int ch;
+                                System.out.println("Enter 1 to book ticket: ");
+                                System.out.println("Enter 2 to cancel ticket: ");
+                                System.out.println("Enter 3 to update your personal info: ");
+                                System.out.println("Enter 4 to see your ticket info: ");
+                                System.out.println("Enter 5 to logout: ");
+                                ch = input.nextInt();
+                                switch (ch) {
+                                    case 1:
+                                        customer.BookflightTicket(PhoneNumber, Password, journeyId, TicketId,
+                                                scheduleId,
+                                                Class,
+                                                SeatNumber);
+                                        break;
+                                    case 2:
+                                        System.out.println(customer.cancelTicket(PhoneNumber, Password, TicketId));
+                                        break;
+                                    case 3:
+                                        System.out.println(customer.UpdatePersonalInfo(PhoneNumber, Password));
+                                        break;
+                                    case 4:
+                                        customer.ShowMyTicket(PhoneNumber, Password, TicketId);
+                                        break;
+                                    case 5:
+                                        System.out.println("logged out succssefuly!: ");
+                                        logout = true;
+                                        break;
+                                    default:
+                                        System.out.println("incorrect choice please try again");
+                                        break;
+                                }
+                            }
+                        } else {
+                            System.out.println(
+                                    "Please enetr 1 to try again or \n enter 2 to back in to main menu");
+                            int loginChoice = input.nextInt();
+                            if (loginChoice == 1) {
+                                login = customer.Login(PhoneNumber, Password);
+                            } else if (loginChoice == 2) {
+                                logout = true;
                             }
                         }
-                    } else {
-                        System.out.println("Login Error: ");
                     }
                     break;
                 case 3:

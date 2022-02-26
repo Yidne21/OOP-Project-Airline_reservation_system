@@ -10,13 +10,39 @@ public class Passenger extends User {
     Scanner input = new Scanner(System.in);
 
     @Override
-    boolean Login(int phonenumber, String passwored) {
+    boolean Login(int phonenumber, String passwored) throws ClassNotFoundException, SQLException {
+        boolean validate = false;
+        int Pphonenumber;
+        String Ppasswored = null;
         System.out.println("enter your phone number: ");
-        phonenumber=input.nextInt();
+        phonenumber = input.nextInt();
         System.out.println("enter your password: ");
-        passwored=input.next();
-        // TODO Auto-generated method stub
-        return true;
+        passwored = input.next();
+        DatabaseConnection gConnection = new DatabaseConnection();
+        Connection conn = gConnection.Connection();
+        PreparedStatement pt = null;
+        pt = conn.prepareStatement("select phone_no, password from passengertbl where phone_no=" + phonenumber);
+        ResultSet rSet = pt.executeQuery();
+        while (rSet.next()) {
+            Pphonenumber = rSet.getInt("phone_no");
+            Ppasswored = rSet.getString("password");
+        }
+        if (Ppasswored != null) {
+            System.out.println("checking.....");
+            if (Ppasswored.equals(passwored)) {
+                validate = true;
+                rSet.close();
+            } else {
+                validate = false;
+                System.out.println("Incorrect password");
+            }
+        } else {
+            System.out.println("checking");
+            System.out.println("Incorrect phonenuber");
+            validate = false;
+        }
+        return validate;
+
     }
 
     @Override
@@ -29,7 +55,7 @@ public class Passenger extends User {
         DatabaseConnection connection = new DatabaseConnection();
         // connection.getConnection();
         // strSelect = "select * from journeytbl";
-      //do the methods correctly
+        // do the methods correctly
     };
 
     String BookflightTicket(int PhoneNumber, String Password, int JourneyId, int TicketId, int ScheduleId, String Class,

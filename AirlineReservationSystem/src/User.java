@@ -22,7 +22,7 @@ public abstract class User {
 
     abstract String Register();
 
-    abstract String UpdatePersonalInfo(int phonenumber, String passwored);
+    abstract String UpdatePersonalInfo(int phonenumber, String passwored) throws ClassNotFoundException;
 
     abstract void ViewFlightInformation();
 

@@ -46,7 +46,8 @@ public class App extends DatabaseConnection {
 
             // main menu
 
-            System.out.println("Enter 1 if you are new and want to get reservation for the above flight schedules: ");
+            System.out.println(
+                    "Enter 1 if you are new and want to get reservation for the above schedules please register here: ");
             System.out.println("Enter 2 to login in to your user account: ");
             System.out.println("Enter 3 to login in to Admin Account: ");
             System.out.println("Enter 4 to exit from the system: ");
@@ -65,7 +66,8 @@ public class App extends DatabaseConnection {
                     boolean login = false;
                     while (logout != true) {
                         login = customer.Login(PhoneNumber, Password);
-                        if (login == true) {// check weather the customer passowrd and phonenumber exist or not if exist
+                        if (login == true) {// check weather the customer passowrd and phonenumber exist or not if
+                                            // exist
                             // it
                             // returns true
                             while (logout != true) {
@@ -79,7 +81,8 @@ public class App extends DatabaseConnection {
                                 ch = input.nextInt();
                                 switch (ch) {
                                     case 1:
-                                        customer.BookflightTicket(PhoneNumber, Password, journeyId, TicketId,
+                                        customer.BookflightTicket(PhoneNumber, Password, journeyId,
+                                                TicketId,
                                                 scheduleId,
                                                 Class,
                                                 SeatNumber);

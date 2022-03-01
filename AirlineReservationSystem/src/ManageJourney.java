@@ -33,13 +33,10 @@ public class ManageJourney {
     String updatejourney(int journeyId) {
         // I starting my Code here
         //
+        // upidation.
         //
-        //
-        /** upidating of Code  */
+        /** upidating of Code */
 
-
-
-        
         return "journey deleted succssesfuly";
     }
 

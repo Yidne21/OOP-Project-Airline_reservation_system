@@ -44,7 +44,7 @@ public class ManageJourney {
     }
 
     String Deleteupdatejourney(int journeyId) {
-
+        // the added journy is delated
         return "journey deleted succssesfuly";
 
     }

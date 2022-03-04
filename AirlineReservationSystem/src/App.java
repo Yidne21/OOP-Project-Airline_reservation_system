@@ -1,9 +1,8 @@
 import java.sql.Date;
 import java.sql.Time;
-
 import java.util.Scanner;
 
-public class App extends DatabaseConnection {
+public class App {
     public static void main(String[] args) throws Exception {
 
         boolean exit = false;
@@ -31,8 +30,9 @@ public class App extends DatabaseConnection {
             String FirstName = null, LastName = null, Password = null, Email = null, Residence = null,
                     Nationality = null, role = null, Class = null, status = null, from = null, destination = null,
                     rout = null;
-            char Sex = 0;
-            int Age = 0, salary = 0, ticketID = 0, seat_no = 0, journeyId = 0, scheduleId = 0, SeatNumber = 0,
+            String Sex = null;
+            Date Age = null;
+            int salary = 0, ticketID = 0, seat_no = 0, journeyId = 0, scheduleId = 0, SeatNumber = 0,
                     TicketId = 0, PhoneNumber = 0, no_of_seat = 0;
             Date DDate = null;
             Time departure = null, arrival = null;
@@ -56,8 +56,7 @@ public class App extends DatabaseConnection {
             switch (choice) {
                 // new passenger registratin
                 case 1:
-
-                    customer.Register();// register for new user passenger registratin
+                    System.out.println(customer.Register());
                     break;
                 case 2:
 

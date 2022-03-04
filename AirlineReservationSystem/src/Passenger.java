@@ -2,6 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.IOException;
 import java.sql.*;
+import java.text.ParseException;
 
 public class Passenger extends User {
     static int BookedTicket = 0;
@@ -9,8 +10,8 @@ public class Passenger extends User {
     DatabaseConnection gConnection = new DatabaseConnection();
 
     Passenger(String FirstName, String LastName, String Password, String Email, String Residence, String Nationality,
-            char Sex, int Age, int PhoneNumber) {
-        super(FirstName, LastName, Password, Email, Residence, Nationality, Sex, Age, PhoneNumber);
+            String Sex, Date date_of_birth, int PhoneNumber) {
+        super(FirstName, LastName, Password, Email, Residence, Nationality, Sex, date_of_birth, PhoneNumber);
     }
 
     Scanner input = new Scanner(System.in);
@@ -55,11 +56,6 @@ public class Passenger extends User {
 
         return null;
     }
-
-    // void ViewFlightSchedule() {
-    // DatabaseConnection connection = new DatabaseConnection();
-
-    // }; it not necessary the passenger can see their flight in the main menu
 
     void BookflightTicket(int PhoneNumber, String Password, int JourneyId, int TicketId, int ScheduleId, String Class,
             int SeatNumber) throws ClassNotFoundException, IOException {
@@ -144,12 +140,16 @@ public class Passenger extends User {
 
     @Override
     void showMyPersonalInfo(int Phone_no, String Password) {
-        // TODO Auto-generated method stub
+        System.out.println("Enter your phone number: ");
+        PhoneNumber = input.nextInt();
+        System.out.println("Enter your passwored: ");
+        Password = input.next();
 
     }
 
     @Override
-    String Register() {
+    String Register() throws ClassNotFoundException, IOException, ParseException, SQLException {
+        String succed = "oops something went wrong";
         System.out.print("Enter your FirstName: ");
         FirstName = input.next();
         System.out.print("Enter your LastName: ");
@@ -163,13 +163,23 @@ public class Passenger extends User {
         System.out.print("Enter your Nationality: ");
         Nationality = input.next();
         System.out.print("Enter your Sex: ");
-        // Sex = input.;
-        System.out.print("Enter your Age: ");
-        Age = input.nextInt();
+        Sex = input.next();
         System.out.print("Enter your PhoneNumber: ");
         PhoneNumber = input.nextInt();
+        System.out.println("Enter your date of birth in the format yyyy-mm-dd");
+        String sDate1 = input.next();
+        date_of_birth = Date.valueOf(sDate1);
+        Connection conn = gConnection.Connection();
+        Statement stmt = conn.createStatement();
+        String sqlInsert = "insert into passengertbl (fname, lname, password, email, residence, nationality, sex, date_of_birth, phone_no) values("
+                + FirstName + "," + LastName + "," + Password + ","
+                + Email
+                + "," + Residence + "," + Nationality + "," + Sex + "," + date_of_birth + "," + PhoneNumber + ")";
 
-        return null;
+        stmt.executeUpdate(sqlInsert);
+        succed = "Registered succssesfuly, now you can login to your user account and get our servicecs";
+
+        return succed;
     };
 
 }

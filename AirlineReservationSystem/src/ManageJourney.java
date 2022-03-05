@@ -28,7 +28,6 @@ public class ManageJourney {
         }
         System.out.println();
     };
-
     Scanner input = new Scanner(System.in);
 
     void Addjourney(int journeyId, String destination, String rout, float cost)
@@ -36,7 +35,7 @@ public class ManageJourney {
         try {
             System.out.println("Enter the journey Id");
             journeyId = input.nextInt();
-            System.out.println("Enter InputMismatchExceptionthe destination");
+            System.out.println("Enter the destination");
             destination = input.next();
             System.out.println("Enter the rout");
             rout = input.next();

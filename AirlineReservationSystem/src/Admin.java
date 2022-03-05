@@ -1,4 +1,6 @@
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.Scanner;
 
 public class Admin extends User {
@@ -6,8 +8,8 @@ public class Admin extends User {
     String role;
 
     Admin(String FirstName, String LastName, String Password, String Email, String Residence, String Nationality,
-            char Sex, int Age, int PhoneNumber, float salary, String role) {
-        super(FirstName, LastName, Password, Email, Residence, Nationality, Sex, Age, PhoneNumber);
+            String Sex, Date age, int PhoneNumber, float salary, String role) {
+        super(FirstName, LastName, Password, Email, Residence, Nationality, Sex, age, PhoneNumber);
         this.salary = salary;
         this.role = role;
     }

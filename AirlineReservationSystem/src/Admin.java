@@ -1,4 +1,6 @@
-
+import java.sql.Date;
+import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.Scanner;
 
 public class Admin extends User {
@@ -6,23 +8,23 @@ public class Admin extends User {
     String role;
 
     Admin(String FirstName, String LastName, String Password, String Email, String Residence, String Nationality,
-            char Sex, int Age, int PhoneNumber, float salary, String role) {
-        super(FirstName, LastName, Password, Email, Residence, Nationality, Sex, Age, PhoneNumber);
+            String Sex, Date age, int PhoneNumber, float salary, String role) {
+        super(FirstName, LastName, Password, Email, Residence, Nationality, Sex, age, PhoneNumber);
         this.salary = salary;
         this.role = role;
     }
 
     Scanner input = new Scanner(System.in);
 
-  @ Override
-boolean Login(int phonenumber, String passwored) {
-    System.out.println("enter phoneNumber: ");
-    phonenumber= input.nextInt();
-    System.out.println("enter password: ");
-    passwored= input.next();
-    // TODO Auto-generated method stub
-    return true;
-}
+    @Override
+    boolean Login(int phonenumber, String passwored) throws ClassNotFoundException, SQLException {
+        System.out.println("enter phoneNumber: ");
+        phonenumber = input.nextInt();
+        System.out.println("enter password: ");
+        passwored = input.next();
+        // TODO Auto-generated method stub
+        return true;
+    }
 
     @Override
     String UpdatePersonalInfo(int phonenumber, String passwored) {

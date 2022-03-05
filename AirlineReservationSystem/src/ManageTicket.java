@@ -18,6 +18,7 @@ public class ManageTicket {
         ResultSet rset = statement.executeQuery(query);
         System.out.printf(
                 "\nTicketID\t  class\t     \tstatus\t      \tseat_no\t   \tscheduleId\t   \tjourneyId");
+        int TotalNumberOfTicket = +Passenger.canceledTicket;
         while (rset.next()) {
             TicketId = rset.getInt("TicketID");
             Class = rset.getString("class");
@@ -27,7 +28,12 @@ public class ManageTicket {
             journeyId = rset.getInt("journeyId");
             System.out.printf("\n%d\t%18s\t%10s\t%7d\t%18d\t%15d\n", TicketId, Class, Status, SeatNumber, scheduleId,
                     journeyId);
+            ++TotalNumberOfTicket;
         }
+        System.out.println();
+        int avilableTicket = TotalNumberOfTicket - Passenger.BookedTicket;
+
+        System.out.print("Total number of avilable Tickets Are: " + avilableTicket + "\n");
         System.out.println();
     };
     // i have to check it again.

@@ -32,12 +32,6 @@ public class Admin extends User {
     }
 
     @Override
-    void ViewFlightInformation() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     void showMyPersonalInfo(int Phone_no, String Password) {
         // TODO Auto-generated method stub
 

@@ -76,7 +76,8 @@ public class App {
                                 System.out.println("Enter 2 to cancel ticket: ");
                                 System.out.println("Enter 3 to update your personal info: ");
                                 System.out.println("Enter 4 to see your ticket info: ");
-                                System.out.println("Enter 5 to logout: ");
+                                System.out.println("Enter 5 to see your personal info: ");
+                                System.out.println("Enter 6 to logout: ");
                                 ch = input.nextInt();
                                 switch (ch) {
                                     case 1:
@@ -87,7 +88,7 @@ public class App {
                                                 SeatNumber);
                                         break;
                                     case 2:
-                                        System.out.println(customer.cancelTicket(PhoneNumber, Password, TicketId));
+                                        System.out.println(customer.cancelTicket(PhoneNumber, TicketId));
                                         break;
                                     case 3:
                                         System.out.println(customer.UpdatePersonalInfo(PhoneNumber, Password));
@@ -96,6 +97,9 @@ public class App {
                                         customer.ShowMyTicket(PhoneNumber, Password, TicketId);
                                         break;
                                     case 5:
+                                        customer.showMyPersonalInfo(PhoneNumber, Password);
+                                        break;
+                                    case 6:
                                         System.out.println("logged out succssefuly!: ");
                                         logout = true;
                                         break;
@@ -139,8 +143,8 @@ public class App {
 
                             switch (Adminchoice) {
                                 case 1:
-                                    admin.ViewFlightInformation();// display all information about the flight
-                                                                  // reservation
+                                    // admin.ViewFlightInformation();// display all information about the flight
+                                    // reservation
                                     break;
                                 case 2:
                                     System.out.println(admin.UpdatePersonalInfo(PhoneNumber, Password));

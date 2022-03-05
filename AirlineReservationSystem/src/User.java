@@ -29,7 +29,5 @@ public abstract class User {
 
     abstract String UpdatePersonalInfo(int phonenumber, String passwored) throws ClassNotFoundException;
 
-    abstract void ViewFlightInformation();
-
     abstract void showMyPersonalInfo(int Phone_no, String Password);
 }

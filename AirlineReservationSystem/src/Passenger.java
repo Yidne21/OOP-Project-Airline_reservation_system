@@ -71,11 +71,13 @@ public class Passenger extends User {
             ScheduleId = input.nextInt();
 
             Connection conn = gConnection.Connection();
-            Statement stmt = conn.createStatement();
-            String sqlInsert = "insert into bookedtbl values (" + PhoneNumber + "," + TicketId + "," + ScheduleId
-                    + ","
-                    + JourneyId + ")";
-            int bookedTicket = stmt.executeUpdate(sqlInsert);
+            String sqlInsert = "insert into bookedtbl values (?,?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sqlInsert);
+            pstmt.setInt(1, PhoneNumber);
+            pstmt.setInt(2, JourneyId);
+            pstmt.setInt(3, TicketId);
+            pstmt.setInt(4, ScheduleId);
+            int bookedTicket = pstmt.executeUpdate(sqlInsert);
             BookedTicket = bookedTicket;
             System.err.println("Your Ticket is booked successfully");
 
@@ -149,35 +151,47 @@ public class Passenger extends User {
 
     @Override
     String Register() throws ClassNotFoundException, IOException, ParseException, SQLException {
-        String succed = "oops something went wrong";
-        System.out.print("Enter your FirstName: ");
-        FirstName = input.next();
-        System.out.print("Enter your LastName: ");
-        LastName = input.next();
-        System.out.print("Enter your Password: ");
-        Password = input.next();
-        System.out.print("Enter your Email: ");
-        Email = input.next();
-        System.out.print("Enter your Residence: ");
-        Residence = input.next();
-        System.out.print("Enter your Nationality: ");
-        Nationality = input.next();
-        System.out.print("Enter your Sex: ");
-        Sex = input.next();
-        System.out.print("Enter your PhoneNumber: ");
-        PhoneNumber = input.nextInt();
-        System.out.println("Enter your date of birth in the format yyyy-mm-dd");
-        String sDate1 = input.next();
-        date_of_birth = Date.valueOf(sDate1);
-        Connection conn = gConnection.Connection();
-        Statement stmt = conn.createStatement();
-        String sqlInsert = "insert into passengertbl (fname, lname, password, email, residence, nationality, sex, date_of_birth, phone_no) values("
-                + FirstName + "," + LastName + "," + Password + ","
-                + Email
-                + "," + Residence + "," + Nationality + "," + Sex + "," + date_of_birth + "," + PhoneNumber + ")";
+        String succed = null;
+        try {
+            System.out.print("Enter your FirstName: ");
+            FirstName = input.next();
+            System.out.print("Enter your LastName: ");
+            LastName = input.next();
+            System.out.print("Enter your Password: ");
+            Password = input.next();
+            System.out.print("Enter your Email: ");
+            Email = input.next();
+            System.out.print("Enter your Residence: ");
+            Residence = input.next();
+            System.out.print("Enter your Nationality: ");
+            Nationality = input.next();
+            System.out.print("Enter your Sex: ");
+            Sex = input.next();
+            System.out.print("Enter your PhoneNumber: ");
+            PhoneNumber = input.nextInt();
+            System.out.println("Enter your date of birth in the format yyyy-mm-dd");
+            String sDate1 = input.next();
+            date_of_birth = Date.valueOf(sDate1);
+            Connection conn = gConnection.Connection();
+            String sqlInsert = "insert into passengertbl (fname, lname, password, email, residence, nationality, sex, date_of_birth, phone_no)"
+                    + " value (?,?,?,?,?,?,?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sqlInsert);
 
-        stmt.executeUpdate(sqlInsert);
-        succed = "Registered succssesfuly, now you can login to your user account and get our servicecs";
+            pstmt.setString(1, FirstName);
+            pstmt.setString(2, LastName);
+            pstmt.setString(3, Password);
+            pstmt.setString(4, Email);
+            pstmt.setString(5, Residence);
+            pstmt.setString(6, Nationality);
+            pstmt.setString(7, Sex);
+            pstmt.setDate(8, date_of_birth);
+            pstmt.setInt(9, PhoneNumber);
+            pstmt.executeUpdate();
+            succed = "Registered succssesfuly, now you can login to your user account and get our servicecs";
+
+        } catch (SQLException e) {
+            succed = "oops something went wrong please try" + e;
+        }
 
         return succed;
     };

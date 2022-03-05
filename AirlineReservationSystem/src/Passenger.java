@@ -286,25 +286,60 @@ public class Passenger extends User {
 
     };
 
-    String cancelTicket(int phoneNumber, String Password, int TicketId) {
-        int totalNumberOfCanceledTicket = 0;
-        System.out.print("Enter your phone number");
-        PhoneNumber = input.nextInt();
-        System.out.print("Enter your passwored");
-        Password = input.next();
-        System.out.print("Enter your ticket ID");
-        TicketId = input.nextInt();
-
-        canceledTicket = totalNumberOfCanceledTicket;
-        return "Ticket canceled successfuly";
+    String cancelTicket(int phoneNumber, int TicketId) {
+        boolean iscanceled = false;
+        String success = null;
+        try {
+            System.out.print("Enter your phone number");
+            PhoneNumber = input.nextInt();
+            System.out.print("Enter your ticket ID");
+            TicketId = input.nextInt();
+            String query = "delete from bookedtbl where phone_no = ?";
+            Connection conn = gConnection.Connection();
+            PreparedStatement preparedStmt;
+            preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setInt(1, PhoneNumber);
+            iscanceled = preparedStmt.execute();
+            success = "Ticket canceled successfuly";
+        } catch (SQLException | ClassNotFoundException e) {
+            success = "Ticket canceled failed please try again" + e;
+        }
+        if (iscanceled == true) {
+            canceledTicket++;
+        }
+        return success;
     }
 
     @Override
     void showMyPersonalInfo(int Phone_no, String Password) {
         System.out.println("Enter your phone number: ");
         PhoneNumber = input.nextInt();
-        System.out.println("Enter your passwored: ");
-        Password = input.next();
+        Connection conn;
+        try {
+            conn = gConnection.Connection();
+            Statement statement = (Statement) conn.createStatement();
+            String query = "select fname, lname, email, residence, nationality, sex, date_of_birth, phone_no from passengertbl where phone_no="
+                    + PhoneNumber;
+            ResultSet rset = statement.executeQuery(query);
+            System.out.printf(
+                    "\nPhone number\t First Name\t Last Name\t \tEmail Residence \tNationality \t sex \t Birth date \t");
+            while (rset.next()) {
+                FirstName = rset.getString("fname");
+                LastName = rset.getString("lname");
+                PhoneNumber = rset.getInt("phone_no");
+                Email = rset.getString("email");
+                Residence = rset.getString("residence");
+                Nationality = rset.getString("nationality");
+                Sex = rset.getString("sex");
+                date_of_birth = rset.getDate("date_of_birth");
+
+                System.out.printf("\n%d \t%s \t%s \t%s\t \t%s \t%s \t%s \t%s\n", PhoneNumber, FirstName, LastName,
+                        Email, Residence, Nationality, Sex, date_of_birth);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Oops some thing went wrong please try again");
+        }
+        System.out.println();
 
     }
 

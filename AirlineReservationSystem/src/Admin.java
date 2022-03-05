@@ -1,6 +1,5 @@
 import java.sql.Date;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.util.Scanner;
 
 public class Admin extends User {

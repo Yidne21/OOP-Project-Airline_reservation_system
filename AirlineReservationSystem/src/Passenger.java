@@ -53,8 +53,173 @@ public class Passenger extends User {
 
     @Override
     String UpdatePersonalInfo(int phonenumber, String passwored) throws ClassNotFoundException {
+        System.out.println("Which information do you want to update? ");
+        System.out.println("ENTER 1 TO UPDATE YOUR FIRST NAME: ");
+        System.out.println("ENTER 2 TO UPDATE YOUR LAST NAME: ");
+        System.out.println("ENTER 3 TO UPDATE YOUR Password: ");
+        System.out.println("ENTER 4 TO UPDATE YOUR Email: ");
+        System.out.println("ENTER 5 TO UPDATE YOUR Residence: ");
+        System.out.println("ENTER 6 TO UPDATE YOUR Nationality: ");
+        System.out.println("ENTER 7 TO UPDATE YOUR Sex: ");
+        System.out.println("ENTER 8 TO UPDATE YOUR date of birth: ");
+        String success = null;
+        int key = input.nextInt();
+        switch (key) {
+            case 1:
+                try {
+                    System.out.print("Enter your PhoneNumber: ");
+                    PhoneNumber = input.nextInt();
+                    System.out.print("Enter your FirstName: ");
+                    FirstName = input.next();
+                    Connection conn = gConnection.Connection();
+                    String strUpdate = "update passengertbl set fname = ? where phone_no = ?";
+                    PreparedStatement preparedStmt = conn.prepareStatement(strUpdate);
+                    preparedStmt.setString(1, FirstName);
+                    preparedStmt.setInt(2, PhoneNumber);
+                    preparedStmt.executeUpdate();
+                    success = "updated successfuly";
+                } catch (Exception e) {
+                    success = "oops some thing went wrong please try again" + e;
+                }
+                break;
+            case 2:
+                try {
+                    System.out.print("Enter your PhoneNumber: ");
+                    PhoneNumber = input.nextInt();
+                    System.out.print("Enter your LastName: ");
+                    LastName = input.next();
+                    Connection conn = gConnection.Connection();
+                    String strUpdate = "update passengertbl set lname =? where phone_no =?";
+                    PreparedStatement preparedStmt = conn.prepareStatement(strUpdate);
+                    preparedStmt.setString(1, LastName);
+                    preparedStmt.setInt(2, PhoneNumber);
+                    preparedStmt.executeUpdate();
+                    success = "updated successfuly";
+                } catch (Exception e) {
+                    success = "oops some thing went wrong please try again" + e;
+                }
+                break;
+            case 3:
+                try {
+                    System.out.print("Enter your PhoneNumber: ");
+                    PhoneNumber = input.nextInt();
+                    System.out.print("Enter your Password: ");
+                    Password = input.next();
+                    Connection conn = gConnection.Connection();
+                    String strUpdate = "update passengertbl set password = ? where phone_no = ?";
+                    PreparedStatement preparedStmt = conn.prepareStatement(strUpdate);
+                    preparedStmt.setString(1, passwored);
+                    preparedStmt.setInt(2, PhoneNumber);
 
-        return null;
+                    // execute the java preparedstatement
+                    preparedStmt.executeUpdate();
+                    success = "updated successfuly";
+                } catch (Exception e) {
+                    success = "oops some thing went wrong please try again" + e;
+                }
+                break;
+            case 4:
+                try {
+                    System.out.print("Enter your PhoneNumber: ");
+                    PhoneNumber = input.nextInt();
+                    System.out.print("Enter your Email: ");
+                    Email = input.next();
+                    Connection conn = gConnection.Connection();
+                    String strUpdate = "update passengertbl set email = ? where phone_no = ?";
+                    PreparedStatement preparedStmt = conn.prepareStatement(strUpdate);
+                    preparedStmt.setString(1, Email);
+                    preparedStmt.setInt(2, PhoneNumber);
+
+                    // execute the java preparedstatement
+                    preparedStmt.executeUpdate();
+                    success = "updated successfuly";
+                } catch (Exception e) {
+                    success = "oops some thing went wrong please try again" + e;
+                }
+                break;
+            case 5:
+                try {
+                    System.out.print("Enter your PhoneNumber: ");
+                    PhoneNumber = input.nextInt();
+                    System.out.print("Enter your Residence: ");
+                    Residence = input.next();
+                    Connection conn = gConnection.Connection();
+                    String strUpdate = "update passengertbl set residence = ? where phone_no = ?";
+                    PreparedStatement preparedStmt = conn.prepareStatement(strUpdate);
+                    preparedStmt.setString(1, Residence);
+                    preparedStmt.setInt(2, PhoneNumber);
+
+                    // execute the java preparedstatement
+                    preparedStmt.executeUpdate();
+                    success = "updated successfuly";
+                } catch (Exception e) {
+                    success = "oops some thing went wrong please try again" + e;
+                }
+                break;
+            case 6:
+                try {
+                    System.out.print("Enter your PhoneNumber: ");
+                    PhoneNumber = input.nextInt();
+                    System.out.print("Enter your Nationality: ");
+                    Nationality = input.next();
+                    Connection conn = gConnection.Connection();
+                    String strUpdate = "update passengertbl set nationality = ? where phone_no = ?";
+                    PreparedStatement preparedStmt = conn.prepareStatement(strUpdate);
+                    preparedStmt.setString(1, Nationality);
+                    preparedStmt.setInt(2, PhoneNumber);
+                    preparedStmt.executeUpdate();
+                    success = "updated successfuly";
+                } catch (Exception e) {
+                    success = "oops some thing went wrong please try again" + e;
+                }
+                break;
+            case 7:
+                try {
+                    System.out.print("Enter your PhoneNumber: ");
+                    PhoneNumber = input.nextInt();
+                    System.out.print("Enter your Sex: ");
+                    Sex = input.next();
+                    Connection conn = gConnection.Connection();
+                    String strUpdate = "update passengertbl set sex = ? where phone_no = ?";
+                    PreparedStatement preparedStmt = conn.prepareStatement(strUpdate);
+                    preparedStmt.setString(1, Sex);
+                    preparedStmt.setInt(2, PhoneNumber);
+
+                    // execute the java preparedstatement
+                    preparedStmt.executeUpdate();
+                    success = "updated successfuly";
+                } catch (Exception e) {
+                    success = "oops some thing went wrong please try again" + e;
+                }
+                break;
+            case 8:
+                try {
+                    System.out.print("Enter your PhoneNumber: ");
+                    PhoneNumber = input.nextInt();
+                    System.out.println("Enter your date of birth in the format yyyy-mm-dd");
+                    String sDate1 = input.next();
+                    date_of_birth = Date.valueOf(sDate1);
+                    Connection conn = gConnection.Connection();
+                    String strUpdate = "update passengertbl set date_of_birth = ? where phone_no = ? "
+                            + PhoneNumber;
+                    PreparedStatement preparedStmt = conn.prepareStatement(strUpdate);
+                    preparedStmt.setDate(1, date_of_birth);
+                    preparedStmt.setInt(2, PhoneNumber);
+
+                    // execute the java preparedstatement
+                    preparedStmt.executeUpdate();
+                    success = "updated successfuly";
+                } catch (Exception e) {
+                    success = "oops some thing went wrong please try again" + e;
+                }
+                break;
+
+            default:
+                System.out.println("incorrect choice please try again!");
+                break;
+        }
+
+        return success;
     }
 
     void BookflightTicket(int PhoneNumber, String Password, int JourneyId, int TicketId, int ScheduleId, String Class,
@@ -135,12 +300,6 @@ public class Passenger extends User {
     }
 
     @Override
-    void ViewFlightInformation() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     void showMyPersonalInfo(int Phone_no, String Password) {
         System.out.println("Enter your phone number: ");
         PhoneNumber = input.nextInt();
@@ -190,7 +349,7 @@ public class Passenger extends User {
             succed = "Registered succssesfuly, now you can login to your user account and get our servicecs";
 
         } catch (SQLException e) {
-            succed = "oops something went wrong please try" + e;
+            succed = "oops something went wrong please try";
         }
 
         return succed;

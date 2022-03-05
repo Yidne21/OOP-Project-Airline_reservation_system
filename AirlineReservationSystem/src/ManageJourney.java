@@ -2,13 +2,14 @@ import java.sql.SQLException;
 import java.sql.*;
 import java.util.Scanner;
 import javax.imageio.IOException;
+
 public class ManageJourney {
     String From, Destination, RouteInfo;
     float cost;
     int journeyId;
     int Addedjourney = 0;
     int Deletedjourney = 0;
-    String rset =null;
+    String rset = null;
 
     void displayJourneySchedule() throws ClassNotFoundException, SQLException {
         DatabaseConnection gConnection = new DatabaseConnection();
@@ -74,8 +75,6 @@ public class ManageJourney {
         }
         return "journey deleted succssesfuly";
     }
-
-    
 
     void Deleteupdatejourney(int journeyId) throws ClassNotFoundException, SQLException {
         try {

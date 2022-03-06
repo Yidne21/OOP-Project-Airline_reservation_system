@@ -47,7 +47,6 @@ public class App {
             boolean logout = false;
 
             // main menu
-
             System.out.println(
                     "Enter 1 if you are new and want to get reservation for the above schedules please register here: ");
             System.out.println("Enter 2 to login in to your user account: ");
@@ -72,6 +71,7 @@ public class App {
                             // it
                             // returns true
                             while (logout != true) {
+                                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
                                 System.out.println("------Here is your dashbored choose what ever you want---------");
                                 int ch;
                                 System.out.println("Enter 1 to book ticket: ");
@@ -111,6 +111,7 @@ public class App {
                                 }
                             }
                         } else {
+                            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
                             System.out.println(
                                     "Please enetr 1 to try again or \n enter 2 to back in to main menu");
                             int loginChoice = input.nextInt();
@@ -133,6 +134,7 @@ public class App {
                         // or not if exist it returns true
                         if (login == true) {
                             while (logout != true) {
+                                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
                                 System.out.println("Enter 1 to view Flight information: ");
                                 System.out.println("Enter 2 to update your information: ");
                                 System.out.println("Enter 3 to Manage flight: ");
@@ -153,6 +155,7 @@ public class App {
                                         System.out.println(admin.UpdatePersonalInfo(PhoneNumber, Password));
                                         break;
                                     case 3:
+                                        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
                                         System.out.println("Enter 1 to Add flight schedule: ");
                                         System.out.println("Enter 2 to update flight schedule: ");
                                         System.out.println("Enter 3 to Delete flight schedule: ");
@@ -173,6 +176,7 @@ public class App {
                                         }
                                         break;
                                     case 4:
+                                        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
                                         System.out.println("Enter 1 to Add journey schedule: ");
                                         System.out.println("Enter 2 to update journey schedule: ");
                                         System.out.println("Enter 3 to Delete journey schedule: ");
@@ -191,6 +195,7 @@ public class App {
                                         }
                                         break;
                                     case 5:
+                                        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
                                         System.out.println("Enter 1 to Add Ticket schedule: ");
                                         System.out.println("Enter 2 to update Ticket schedule: ");
                                         System.out.println("Enter 3 to Delete Ticket schedule: ");
@@ -221,6 +226,7 @@ public class App {
                                 }
                             }
                         } else {
+                            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
                             System.out.println(
                                     "Please enetr 1 to try again or \n enter 2 to back in to main menu");
                             int loginChoice = input.nextInt();
@@ -233,6 +239,7 @@ public class App {
                     }
                     break;
                 case 4:
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
                     System.out.println("Thank you for choosing us. We miss you! ");
                     exit = true;
                     break;

@@ -45,12 +45,8 @@ public class ScheduleFlight {
         DatabaseConnection gConnection = new DatabaseConnection();
         Connection conn = gConnection.Connection();
         Statement statement = (Statement) conn.createStatement();
-        return "Flight scheduled succssesfuly";
 
-        } catch (SQLException e) {
-            Added = "Something goes wrong,Please make sure you Added the correct information\n";
-        }
-        return Added;
+        return "Flight scheduled succssesfuly";
     }
 
     // i have to check it again.

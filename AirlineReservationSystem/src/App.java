@@ -35,7 +35,7 @@ public class App {
             Date Age = null;
             int salary = 0, ticketID = 0, seat_no = 0, journeyId = 0, scheduleId = 0, SeatNumber = 0,
                     TicketId = 0, PhoneNumber = 0, no_of_seat = 0;
-            Date Age = null, DDate = null;
+            Date DDate = null;
             Time departure = null, arrival = null;
             float cost = 0.0f;
             Passenger customer = new Passenger(FirstName, LastName, Password, Email, Residence, Nationality, Sex, Age,
@@ -177,7 +177,7 @@ public class App {
                                         Adminchoice = input.nextInt();
                                         switch (Adminchoice) {
                                             case 1:
-                                                journey.Addjourney(journeyId, destination, rout, cost);
+                                                journey.Addjourney(journeyId, destination, from, rout, cost);
                                                 break;
                                             case 2:
                                                 journey.updatejourney(journeyId);

@@ -209,10 +209,11 @@ public class App {
                                     Adminchoice = input.nextInt();
                                     switch (Adminchoice) {
                                         case 1:
-                                            System.out.println(ticket.addTicket());
+                                            System.out.println(ticket.addTicket(ticketID, journeyId, Class, status,
+                                                    scheduleId, seat_no));
                                             break;
                                         case 2:
-                                            ticket.updateTicket(ticketID);
+                                            ticket.UpdateTicket(ticketID);
                                             break;
                                         case 3:
                                             ticket.DeleteTicket(ticketID);
@@ -223,7 +224,7 @@ public class App {
                                     admin.showMyPersonalInfo(PhoneNumber, Password);
                                     break;
                                 case 8:
-                                    admin.Register();
+                                    System.out.println(admin.Register());
                                     break;
                                 case 9:
                                     System.out.println("logged out succssefuly!");

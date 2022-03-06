@@ -30,6 +30,7 @@ public class ManageJourney {
 
     Scanner input = new Scanner(System.in);
 
+    // it not working
     void Addjourney(int journeyId, String destination, String rout, float cost)
             throws ClassNotFoundException, SQLException {
         try {
@@ -56,6 +57,7 @@ public class ManageJourney {
         }
     };
 
+    // it not working
     String updatejourney(int journeyId) throws ClassNotFoundException, SQLException {
         System.out.println("Select the journey Id from Jourenytb");
         DatabaseConnection gConnection = new DatabaseConnection();
@@ -75,6 +77,7 @@ public class ManageJourney {
         return "journey deleted succssesfuly";
     }
 
+    // it not working
     void Deleteupdatejourney(int journeyId) throws ClassNotFoundException, SQLException {
         try {
             System.out.print("Enter The JourenyId");

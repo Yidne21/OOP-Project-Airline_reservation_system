@@ -1,5 +1,4 @@
 import java.sql.SQLException;
-import java.util.Scanner;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -10,8 +9,13 @@ public class ManageTicket {
     int SeatNumber;
     String Class;
     String Status;
-    Scanner input = new Scanner(System.in);
+    int Addedticket = 0;
+    int Deletedticket = 0;
+    int updatedticket = 0;
+    String rset = null;
     DatabaseConnection gConnection = new DatabaseConnection();
+
+    Scanner input = new Scanner(System.in);
 
     void displayAvailabeFlightTickets() throws ClassNotFoundException, SQLException {
         Connection conn = gConnection.Connection();
@@ -40,51 +44,92 @@ public class ManageTicket {
     };
 
     String addTicket(int ticketID, int journeyId, String Class, String status, int scheduleId, int seat_no) {
-        String success = null;
-        try {
-            System.out.print("Enter the ticket ID: ");
-            ticketID = input.nextInt();
-            System.out.print("Enter the journey ID: ");
-            journeyId = input.nextInt();
-            System.out.print("Enter the Class name: ");
-            Class = input.next();
-            System.out.print("Enter status of the ticket: ");
-            status = input.next();
-            System.out.print("Enter the schedul ID: ");
-            scheduleId = input.nextInt();
-            System.out.print("Enter the seat number: ");
-            seat_no = input.nextInt();
-            Connection conn;
-            conn = gConnection.Connection();
-            String sqlInsert = "insert into tickettbl (ticketID, class, status, seat_no, schedulId,journeyId)"
-                    + " value (?,?,?,?,?,?)";
-            PreparedStatement pstmt = conn.prepareStatement(sqlInsert);
-
-            pstmt.setInt(1, ticketID);
-            pstmt.setString(2, Class);
-            pstmt.setString(3, status);
-            pstmt.setInt(4, seat_no);
-            pstmt.setInt(5, scheduleId);
-            pstmt.setInt(6, journeyId);
-            pstmt.executeUpdate();
-            success = "Ticket Added succssesfuly";
-        } catch (ClassNotFoundException | SQLException e) {
-            success = "Ticket adding failed";
-        }
-        return success;
+        return "Ticket Added succssesfuly";
     }
 
-    String UpdateTicket(int ticketID) {
-        String success = null;
-        return success;
+    String updateTicket(int ticketID) throws ClassNotFoundException, SQLException {
+        String updated = null;
+        System.out.println("what type of data do you want to update:");
+        System.out.println("Enter 1 to update class of the ticket:");
+        System.out.println("Enter 2 to update the status of the ticket: ");
+        System.out.println("Enter 3 to update the seat_no: ");
+        int key = input.nextInt();
+        System.out.println("Enter the ticket of the journey");
+        journeyId = input.nextInt();
+        switch (key) {
+            case 1:
+                try {
+                    System.out.println("Enter the new Class of the ticket: ");
+                    Class = input.next();
+                    Connection conn = gConnection.Connection();
+                    String sql = "update tickettbl set Class = ? where ticketID = ?";
+                    PreparedStatement psmt = conn.prepareStatement(sql);
+                    psmt.setString(1, Class);
+                    psmt.setInt(2, ticketID);
+                    psmt.executeUpdate();
+                    updated = "your Updation done  succssefuly";
+                } catch (SQLException e) {
+                    updated = "Updattion is failed please try again";
+                }
+                break;
+            case 2:
+                try {
+                    System.out.println("Enter the new status of the journey: ");
+                    Status = input.next();
+                    Connection conn = gConnection.Connection();
+                    String qurey = "update tickettbl set From= ? where ticketID = ?";
+                    PreparedStatement psmt = conn.prepareStatement(qurey);
+                    psmt.setString(1, Status);
+                    psmt.setInt(2, ticketID);
+                    psmt.executeUpdate();
+                    updated = "Updated succssefuly";
+                } catch (SQLException e) {
+                    updated = "Updatting failed please try again";
+                }
+                break;
+            case 3:
+                try {
+                    System.out.println("Enter the new seat_no of the journey: ");
+                    SeatNumber = input.nextInt();
+                    Connection conn = gConnection.Connection();
+                    String sql1 = "update journeytbl set seat_no = ? where ticketID= ?";
+                    PreparedStatement psmt = conn.prepareStatement(sql1);
+                    psmt.setFloat(2, SeatNumber);
+                    psmt.setInt(2, ticketID);
+                    psmt.executeUpdate();
+                    updated = "Updated succssefuly";
+                } catch (SQLException e) {
+                    updated = "Updatting failed please try again";
+                }
+                break;
+
+            default:
+                break;
+        }
+        return updated;
+
     }
 
     String DeleteTicket(int ticketID) throws ClassNotFoundException, SQLException {
-        DatabaseConnection gConnection = new DatabaseConnection();
-        Connection conn = gConnection.Connection();
-        Statement statement = (Statement) conn.createStatement();
-        Scanner input = new Scanner(System.in);
-        return "Ticket deleted succssesfuly";
+        boolean isdeleted = false;
+        String deleted = null;
+        try {
+            System.out.print("Enter the ticketID:");
+            ticketID = input.nextInt();
+            String delquery = "delete from tickettbl where ticketID= ?";
+            Connection conn = gConnection.Connection();
+            PreparedStatement preparedStmt;
+            preparedStmt = conn.prepareStatement(delquery);
+            preparedStmt.setInt(1, ticketID);
+            isdeleted = preparedStmt.execute();
+            deleted = "ticket deleted successfuly";
+        } catch (SQLException | ClassNotFoundException e) {
+            deleted = "Ticket deletion failed please try again" + e;
+        }
+        if (isdeleted == true) {
+            Deletedticket++;
+        }
+        return deleted;
 
     }
 }

@@ -1,3 +1,4 @@
+
 import java.sql.Date;
 import java.sql.Time;
 import java.util.Scanner;
@@ -198,7 +199,7 @@ public class App {
                                                         scheduleId, seat_no));
                                                 break;
                                             case 2:
-                                                ticket.UpdateTicket(ticketID);
+                                                ticket.updateTicket(ticketID);
                                                 break;
                                             case 3:
                                                 ticket.DeleteTicket(ticketID);

@@ -1,7 +1,6 @@
 import java.sql.SQLException;
 import java.sql.*;
 import java.util.Scanner;
-import javax.print.attribute.standard.Destination;
 
 public class ManageJourney {
     String From, Destination, RouteInfo;
@@ -12,9 +11,9 @@ public class ManageJourney {
     int updatedjourney = 0;
     String rset = null;
     DatabaseConnection gConnection = new DatabaseConnection();
+    Scanner input = new Scanner(System.in);
 
     void displayJourneySchedule() throws ClassNotFoundException, SQLException {
-        DatabaseConnection gConnection = new DatabaseConnection();
         Connection conn = gConnection.Connection();
         Statement statement = (Statement) conn.createStatement();
         String query = "select * from journeytbl";
@@ -31,30 +30,34 @@ public class ManageJourney {
         System.out.println();
     };
 
-    Scanner input = new Scanner(System.in);
-
-    String Addjourney(int journeyId, String destination, String rout, float cost)
+    String Addjourney(int journeyId, String destination, String From, String rout, float cost)
             throws ClassNotFoundException, SQLException {
         String Added = null;
         try {
-            System.out.println("Enter the journey Id");
+            System.out.println("Enter the journey Id:");
             journeyId = input.nextInt();
-            System.out.println("Enter InputMismatchExceptionthe destination");
+            System.out.println("Enter the destination:");
             destination = input.next();
-            System.out.println("Enter the rout");
+            System.out.println("Enter the source:");
+            From = input.next();
+            System.out.println("Enter the rout:");
             rout = input.next();
-            System.out.println("Enter the cost");
-            cost = input.nextInt();
-            DatabaseConnection gConnection = new DatabaseConnection();
+            System.out.println("Enter the cost:");
+            cost = input.nextFloat();
+
             Connection conn = gConnection.Connection();
-            Statement stmt = conn.createStatement();
-            String sqlInsert = "insert into journeybl values (" + journeyId + "," + destination + "," + rout + ","
-                    + cost + ")";
-            int addedjourney = stmt.executeUpdate(sqlInsert);
-            Addedjourney = addedjourney;
-            Added = "Your journey is added successfully";
+            String sqlAdd = "insert into journeytbl values (?,?,?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sqlAdd);
+            pstmt.setInt(1, journeyId);
+            pstmt.setString(2, destination);
+            pstmt.setString(3, From);
+            pstmt.setString(4, rout);
+            pstmt.setFloat(5, cost);
+            pstmt.executeUpdate();
+            Added = "Your journey is added successfully\n";
+
         } catch (SQLException e) {
-            Added = "uncatched  error existed";
+            Added = "Something goes wrong,Please make sure you Added the correct information\n";
         }
         return Added;
     };
@@ -80,19 +83,55 @@ public class ManageJourney {
                     psmt.setString(1, Destination);
                     psmt.setInt(2, journeyId);
                     psmt.executeUpdate();
-                    updated = "Updated succssefuly";
+                    updated = "your Updation done  succssefuly\n";
                 } catch (SQLException e) {
-                    updated = "Updatting failed please try again";
+                    updated = "Updattion is failed please try again\n";
                 }
                 break;
             case 2:
-
+                try {
+                    System.out.println("Enter the new source of the journey: ");
+                    From = input.next();
+                    Connection conn = gConnection.Connection();
+                    String qurey = "update journeytbl set From= ? where journeyId = ?";
+                    PreparedStatement psmt = conn.prepareStatement(qurey);
+                    psmt.setString(1, From);
+                    psmt.setInt(2, journeyId);
+                    psmt.executeUpdate();
+                    updated = "Updated succssefuly\n";
+                } catch (SQLException e) {
+                    updated = "Updatting failed please try again\n";
+                }
                 break;
             case 3:
-
+                try {
+                    System.out.println("Enter the new cost of the journey: ");
+                    cost = input.nextFloat();
+                    Connection conn = gConnection.Connection();
+                    String sql1 = "update journeytbl set cost = ? where journeyId = ?";
+                    PreparedStatement psmt = conn.prepareStatement(sql1);
+                    psmt.setFloat(2, cost);
+                    psmt.setInt(2, journeyId);
+                    psmt.executeUpdate();
+                    updated = "Updated succssefuly\n";
+                } catch (SQLException e) {
+                    updated = "Updatting failed please try again\n";
+                }
                 break;
             case 4:
-
+                try {
+                    System.out.println("Enter the new rout of the journey: ");
+                    RouteInfo = input.next();
+                    Connection conn = gConnection.Connection();
+                    String sql2 = "update journeytbl set rout = ? where journeyId = ?";
+                    PreparedStatement psmt = conn.prepareStatement(sql2);
+                    psmt.setString(1, RouteInfo);
+                    psmt.setInt(2, journeyId);
+                    psmt.executeUpdate();
+                    updated = "Updated succssefuly\n";
+                } catch (SQLException e) {
+                    updated = "Updatting failed please try again\n";
+                }
                 break;
 
             default:
@@ -102,22 +141,24 @@ public class ManageJourney {
     }
 
     String Deleteupdatejourney(int journeyId) throws ClassNotFoundException, SQLException {
-        String Delated = null;
+        boolean isdeleted = false;
+        String deleted = null;
         try {
-            System.out.print("Enter The JourenyId");
+            System.out.print("Enter the journyId:");
             journeyId = input.nextInt();
-            DatabaseConnection gConnection = new DatabaseConnection();
+            String delquery = "delete from journeytbl where journeyId = ?";
             Connection conn = gConnection.Connection();
-            Statement stmt = conn.createStatement();
-            String Query = "select journeyId from journeytbl";
-            ResultSet rset = stmt.executeQuery(Query);
-            while (rset.next()) {
-                journeyId = rset.getInt("journeyId");
-            }
-            Delated = "Your journey is delated successfully";
-        } catch (SQLException e) {
-            Delated = "something went wrong please Enter the correct value only!";
+            PreparedStatement preparedStmt;
+            preparedStmt = conn.prepareStatement(delquery);
+            preparedStmt.setInt(1, journeyId);
+            isdeleted = preparedStmt.execute();
+            deleted = "journey deleted successfuly\n";
+        } catch (SQLException | ClassNotFoundException e) {
+            deleted = "journey deletion failed please try again\n";
         }
-        return Delated;
-    };
+        if (isdeleted == true) {
+            Deletedjourney++;
+        }
+        return deleted;
+    }
 }

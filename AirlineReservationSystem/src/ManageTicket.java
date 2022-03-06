@@ -44,7 +44,7 @@ public class ManageTicket {
     };
 
     String addTicket(int ticketID, int journeyId, String Class, String status, int scheduleId, int seat_no) {
-       String success = null;
+        String success = null;
         try {
             System.out.print("Enter the ticket ID: ");
             ticketID = input.nextInt();

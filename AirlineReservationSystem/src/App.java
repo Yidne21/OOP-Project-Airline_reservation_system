@@ -209,7 +209,8 @@ public class App {
                                     Adminchoice = input.nextInt();
                                     switch (Adminchoice) {
                                         case 1:
-                                            ticket.addTicket(ticketID, journeyId, Class, status, scheduleId, seat_no);
+                                            System.out.println(ticket.addTicket(ticketID, journeyId, Class, status,
+                                                    scheduleId, seat_no));
                                             break;
                                         case 2:
                                             ticket.updateTicket(ticketID);

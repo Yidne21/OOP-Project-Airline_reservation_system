@@ -1,5 +1,6 @@
 import java.sql.SQLException;
 import java.sql.*;
+import java.util.Scanner;
 
 public class ManageTicket {
     int TicketId;
@@ -8,6 +9,8 @@ public class ManageTicket {
     int SeatNumber;
     String Class;
     String Status;
+    Scanner input = new Scanner(System.in);
+    DatabaseConnection gConnection = new DatabaseConnection();
 
     void displayAvailabeFlightTickets() throws ClassNotFoundException, SQLException {
         DatabaseConnection gConnection = new DatabaseConnection();
@@ -37,7 +40,39 @@ public class ManageTicket {
     };
 
     String addTicket(int ticketID, int journeyId, String Class, String status, int scheduleId, int seat_no) {
-        return "Ticket Added succssesfuly";
+        String success = null;
+        try {
+            System.out.print("Enter the ticket ID: ");
+            ticketID = input.nextInt();
+            System.out.print("Enter the journey ID: ");
+            journeyId = input.nextInt();
+            System.out.print("Enter the Class name: ");
+            Class = input.next();
+            System.out.print("Enter status of the ticket: ");
+            status = input.next();
+            System.out.print("Enter the schedul ID: ");
+            scheduleId = input.nextInt();
+            System.out.print("Enter the seat number: ");
+            seat_no = input.nextInt();
+            Connection conn;
+            conn = gConnection.Connection();
+            String sqlInsert = "insert into tickettbl (ticketID, class, status, seat_no, schedulId,journeyId)"
+                    + " value (?,?,?,?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sqlInsert);
+
+            pstmt.setInt(1, ticketID);
+            pstmt.setString(2, Class);
+            pstmt.setString(3, status);
+            pstmt.setInt(4, seat_no);
+            pstmt.setInt(5, scheduleId);
+            pstmt.setInt(6, journeyId);
+            pstmt.executeUpdate();
+            success = "Ticket Added succssesfuly";
+        } catch (ClassNotFoundException | SQLException e) {
+            success = "Ticket adding failed";
+            e.printStackTrace();
+        }
+        return success;
     }
 
     String updateTicket(int ticketID) {

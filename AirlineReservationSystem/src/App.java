@@ -192,7 +192,7 @@ public class App {
                                     Adminchoice = input.nextInt();
                                     switch (Adminchoice) {
                                         case 1:
-                                            journey.Addjourney(journeyId, from, destination, rout, cost);
+                                            journey.Addjourney(journeyId, destination, rout, cost);
                                             break;
                                         case 2:
                                             journey.updatejourney(journeyId);
@@ -209,8 +209,7 @@ public class App {
                                     Adminchoice = input.nextInt();
                                     switch (Adminchoice) {
                                         case 1:
-                                            System.out.println(ticket.addTicket(ticketID, journeyId, Class, status,
-                                                    scheduleId, seat_no));
+                                            System.out.println(ticket.addTicket());
                                             break;
                                         case 2:
                                             ticket.updateTicket(ticketID);

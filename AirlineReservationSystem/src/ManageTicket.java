@@ -1,4 +1,5 @@
 import java.sql.SQLException;
+import java.util.Scanner;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -38,7 +39,7 @@ public class ManageTicket {
         System.out.print("Total number of avilable Tickets Are: " + avilableTicket + "\n");
         System.out.println();
     };
-
+  
     String addTicket(int ticketID, int journeyId, String Class, String status, int scheduleId, int seat_no) {
         String success = null;
         try {
@@ -70,16 +71,14 @@ public class ManageTicket {
             success = "Ticket Added succssesfuly";
         } catch (ClassNotFoundException | SQLException e) {
             success = "Ticket adding failed";
-            e.printStackTrace();
         }
         return success;
     }
-
-    String updateTicket(int ticketID) {
-        return "Ticket deleted succssesfuly";
-    }
-
-    String DeleteTicket(int ticketID) {
+    String DeleteTicket(int ticketID)throws ClassNotFoundException, SQLException {
+          DatabaseConnection gConnection = new DatabaseConnection();
+         Connection conn = gConnection.Connection();
+        Statement statement = (Statement) conn.createStatement();
+        Scanner input = new Scanner(System.in);
         return "Ticket deleted succssesfuly";
 
     }

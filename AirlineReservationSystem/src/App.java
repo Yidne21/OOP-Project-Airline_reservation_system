@@ -177,7 +177,8 @@ public class App {
                                         Adminchoice = input.nextInt();
                                         switch (Adminchoice) {
                                             case 1:
-                                                journey.Addjourney(journeyId, destination, from, rout, cost);
+                                                System.out.println(
+                                                        journey.Addjourney(journeyId, destination, from, rout, cost));
                                                 break;
                                             case 2:
                                                 journey.updatejourney(journeyId);

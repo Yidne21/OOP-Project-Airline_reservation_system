@@ -16,16 +16,4 @@ public class DatabaseConnection {
         connection = DriverManager.getConnection(url, user, password);
         return connection;
     }
-
-    void TestDBconnection() {
-
-    };
-
-    void configureDatabase() {
-
-    };
-
-    void createDatabaseConnection() {
-
-    };
 }

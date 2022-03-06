@@ -7,6 +7,7 @@ public class App extends DatabaseConnection {
     public static void main(String[] args) throws Exception {
 
         boolean exit = false;
+
         while (exit != true) {// ways of exit
 
             // system user interaction
@@ -31,10 +32,10 @@ public class App extends DatabaseConnection {
             String FirstName = null, LastName = null, Password = null, Email = null, Residence = null,
                     Nationality = null, role = null, Class = null, status = null, from = null, destination = null,
                     rout = null;
-            char Sex = 0;
-            int Age = 0, salary = 0, ticketID = 0, seat_no = 0, journeyId = 0, scheduleId = 0, SeatNumber = 0,
+            String Sex = null;
+            int salary = 0, ticketID = 0, seat_no = 0, journeyId = 0, scheduleId = 0, SeatNumber = 0,
                     TicketId = 0, PhoneNumber = 0, no_of_seat = 0;
-            Date DDate = null;
+            Date Age = null, DDate = null;
             Time departure = null, arrival = null;
             float cost = 0.0f;
             Passenger customer = new Passenger(FirstName, LastName, Password, Email, Residence, Nationality, Sex, Age,
@@ -88,7 +89,7 @@ public class App extends DatabaseConnection {
                                                 SeatNumber);
                                         break;
                                     case 2:
-                                        System.out.println(customer.cancelTicket(PhoneNumber, Password, TicketId));
+                                        System.out.println(customer.cancelTicket(PhoneNumber, TicketId));
                                         break;
                                     case 3:
                                         System.out.println(customer.UpdatePersonalInfo(PhoneNumber, Password));
@@ -153,8 +154,9 @@ public class App extends DatabaseConnection {
                                     Adminchoice = input.nextInt();
                                     switch (Adminchoice) {
                                         case 1:
-                                            flight.AddFlightSchedule(scheduleId, journeyId, DDate, departure, arrival,
-                                                    no_of_seat);
+                                            System.out.println(flight.AddFlightSchedule(scheduleId, journeyId, DDate,
+                                                    departure, arrival,
+                                                    no_of_seat));
                                             break;
                                         case 2:
                                             flight.updateFlightScheduld(scheduleId);
@@ -189,7 +191,7 @@ public class App extends DatabaseConnection {
                                     Adminchoice = input.nextInt();
                                     switch (Adminchoice) {
                                         case 1:
-                                            journey.Addjourney(journeyId, destination, rout, cost);
+                                            journey.Addjourney(journeyId, destination, from, rout, cost);
                                             break;
 
                                         case 2:

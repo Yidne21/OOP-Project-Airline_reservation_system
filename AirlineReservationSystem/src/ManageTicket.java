@@ -1,5 +1,6 @@
 import java.sql.SQLException;
 import java.sql.*;
+import java.util.Scanner;
 
 public class ManageTicket {
     int TicketId;
@@ -8,9 +9,15 @@ public class ManageTicket {
     int SeatNumber;
     String Class;
     String Status;
+    int Addedticket = 0;
+    int Deletedticket = 0;
+    int updatedticket = 0;
+    String rset = null;
+    DatabaseConnection gConnection = new DatabaseConnection();
+
+    Scanner input = new Scanner(System.in);
 
     void displayAvailabeFlightTickets() throws ClassNotFoundException, SQLException {
-        DatabaseConnection gConnection = new DatabaseConnection();
         Connection conn = gConnection.Connection();
         Statement statement = (Statement) conn.createStatement();
         String query = "select * from tickettbl";
@@ -40,12 +47,16 @@ public class ManageTicket {
         return "Ticket Added succssesfuly";
     }
 
-    String updateTicket(int ticketID) {
-        return "Ticket deleted succssesfuly";
+    String updateTicket(int ticketID) throws ClassNotFoundException, SQLException {
+       
+        return null;
+
     }
 
-    String DeleteTicket(int ticketID) {
-        return "Ticket deleted succssesfuly";
+    String DeleteTicket(int ticketID) throws ClassNotFoundException, SQLException {
+        boolean isdeleted = false;
+       
+        return null;
 
     }
 }

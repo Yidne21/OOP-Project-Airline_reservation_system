@@ -39,7 +39,7 @@ public class ManageTicket {
         }
         System.out.println();
         int avilableTicket = TotalNumberOfTicket - Passenger.BookedTicket;
-
+        System.out.println("..................................................................................");
         System.out.print("Total number of avilable Tickets Are: " + avilableTicket + "\n");
         System.out.println();
     };

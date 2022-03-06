@@ -15,19 +15,22 @@ public class App {
 
             System.out.println(
                     "...................wellcome to the Airline reservation system.........................\n");
+            System.out.println("..................................................................................");
             System.out.println(".............Today's journey details are..... ");
-            System.out.println();
+            System.out.println("..................................................................................");
             ManageJourney journey = new ManageJourney();// display details of journey
             journey.displayJourneySchedule();
+            System.out.println("..................................................................................");
             System.out.println(".............Today's Available flight schedule are......");
-            System.out.println();
+            System.out.println("...................................................................................");
             ScheduleFlight flight = new ScheduleFlight();// display details of avilable flight
             flight.displayFlightSchedule();
+            System.out.println("..................................................................................");
             System.out.println(".............Today's Available flight tickets are.......");
-            System.out.println();
+            System.out.println("....................................................................................");
             ManageTicket ticket = new ManageTicket();// display details vailable flight tickets for the passenger
             ticket.displayAvailabeFlightTickets();
-
+            System.out.println("....................................................................................");
             /** declaring the necessary variable */
             Scanner input = new Scanner(System.in);
             String FirstName = null, LastName = null, Password = null, Email = null, Residence = null,

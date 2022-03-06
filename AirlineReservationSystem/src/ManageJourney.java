@@ -29,7 +29,6 @@ public class ManageJourney {
         }
         System.out.println();
     };
-
     String Addjourney(int journeyId, String destination, String From, String rout, float cost)
             throws ClassNotFoundException, SQLException {
         String Added = null;
@@ -62,6 +61,7 @@ public class ManageJourney {
         return Added;
     };
 
+    // it not working
     String updatejourney(int journeyId) throws ClassNotFoundException, SQLException {
         String updated = null;
         System.out.println("what type of data do you want to update");

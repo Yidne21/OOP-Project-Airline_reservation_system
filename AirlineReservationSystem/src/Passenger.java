@@ -238,17 +238,16 @@ public class Passenger extends User {
             String sqlInsert = "insert into bookedtbl values (?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlInsert);
             pstmt.setInt(1, PhoneNumber);
-            pstmt.setInt(2, JourneyId);
-            pstmt.setInt(3, TicketId);
-            pstmt.setInt(4, ScheduleId);
-            int bookedTicket = pstmt.executeUpdate(sqlInsert);
+            pstmt.setInt(2, TicketId);
+            pstmt.setInt(3, ScheduleId);
+            pstmt.setInt(4, JourneyId);
+            int bookedTicket = pstmt.executeUpdate();
             BookedTicket = bookedTicket;
-            System.err.println("Your Ticket is booked successfully");
-
+            System.out.println("Your Ticket is booked successfully");
         } catch (InputMismatchException e) {
             System.out.println("something went wrong please Enter the integer value only!");
         } catch (SQLException e) {
-            System.out.println("Please maake sure you inserted the correct information");
+            System.out.println("Please make sure you inserted the correct information" + e);
         }
     };
 

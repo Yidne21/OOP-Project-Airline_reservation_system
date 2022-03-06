@@ -1,6 +1,7 @@
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
@@ -52,199 +53,214 @@ public class App {
             System.out.println("Enter 2 to login in to your user account: ");
             System.out.println("Enter 3 to login in to Admin Account: ");
             System.out.println("Enter 4 to exit from the system: ");
-            int choice;
-            choice = input.nextInt();
-            switch (choice) {
-                // new passenger registratin
-                case 1:
-                    System.out.println(customer.Register());
-                    break;
-                case 2:
+            try {
+                int choice;
+                choice = input.nextInt();
+                switch (choice) {
+                    // new passenger registratin
+                    case 1:
+                        System.out.println(customer.Register());
+                        break;
+                    case 2:
 
-                    // user menu
+                        // user menu
 
-                    boolean login = false;
-                    login = customer.Login(PhoneNumber, Password);
-                    while (logout != true) {
-                        if (login == true) {// check weather the customer passowrd and phonenumber exist or not if
-                                            // exist
-                            // it
-                            // returns true
+                        try {
+                            boolean login = false;
+                            login = customer.Login(PhoneNumber, Password);
                             while (logout != true) {
-                                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                                System.out.println("------Here is your dashbored choose what ever you want---------");
-                                int ch;
-                                System.out.println("Enter 1 to book ticket: ");
-                                System.out.println("Enter 2 to cancel ticket: ");
-                                System.out.println("Enter 3 to update your personal info: ");
-                                System.out.println("Enter 4 to see your ticket info: ");
-                                System.out.println("Enter 5 to see your personal info: ");
-                                System.out.println("Enter 6 to logout: ");
-                                ch = input.nextInt();
-                                switch (ch) {
-                                    case 1:
-                                        customer.BookflightTicket(PhoneNumber, Password, journeyId,
-                                                TicketId,
-                                                scheduleId,
-                                                Class,
-                                                SeatNumber);
-                                        break;
-                                    case 2:
-                                        System.out.println(customer.cancelTicket(PhoneNumber, TicketId));
-                                        break;
-                                    case 3:
-                                        System.out.println(customer.UpdatePersonalInfo(PhoneNumber, Password));
-                                        break;
-                                    case 4:
-                                        customer.ShowMyTicket(PhoneNumber, Password, TicketId);
-                                        break;
-                                    case 5:
-                                        customer.showMyPersonalInfo(PhoneNumber, Password);
-                                        break;
-                                    case 6:
-                                        System.out.println("logged out succssefuly!: ");
+                                if (login == true) {// check weather the customer passowrd and phonenumber exist or not
+                                                    // if
+                                                    // exist
+                                    // it
+                                    // returns true
+                                    while (logout != true) {
+                                        System.out
+                                                .println(
+                                                        "------Here is your dashbored choose what ever you want---------");
+                                        int ch;
+                                        System.out.println("Enter 1 to book ticket: ");
+                                        System.out.println("Enter 2 to cancel ticket: ");
+                                        System.out.println("Enter 3 to update your personal info: ");
+                                        System.out.println("Enter 4 to see your ticket info: ");
+                                        System.out.println("Enter 5 to see your personal info: ");
+                                        System.out.println("Enter 6 to logout: ");
+                                        ch = input.nextInt();
+                                        switch (ch) {
+                                            case 1:
+                                                customer.BookflightTicket(PhoneNumber, Password, journeyId,
+                                                        TicketId,
+                                                        scheduleId,
+                                                        Class,
+                                                        SeatNumber);
+                                                break;
+                                            case 2:
+                                                System.out.println(customer.cancelTicket(PhoneNumber, TicketId));
+                                                break;
+                                            case 3:
+                                                System.out.println(customer.UpdatePersonalInfo(PhoneNumber, Password));
+                                                break;
+                                            case 4:
+                                                customer.ShowMyTicket(PhoneNumber, Password, TicketId);
+                                                break;
+                                            case 5:
+                                                customer.showMyPersonalInfo(PhoneNumber, Password);
+                                                break;
+                                            case 6:
+                                                System.out.println("logged out succssefuly!: ");
+                                                logout = true;
+                                                break;
+                                            default:
+                                                System.out.println("incorrect choice please try again");
+                                                break;
+                                        }
+
+                                    }
+                                } else {
+                                    System.out.println(
+                                            "Please enetr 1 to try again or \n enter 2 to back in to main menu");
+                                    int loginChoice = input.nextInt();
+                                    if (loginChoice == 1) {
+                                        login = customer.Login(PhoneNumber, Password);
+                                    } else if (loginChoice == 2) {
                                         logout = true;
-                                        break;
-                                    default:
-                                        System.out.println("incorrect choice please try again");
-                                        break;
+                                    }
                                 }
                             }
-                        } else {
-                            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                            System.out.println(
-                                    "Please enetr 1 to try again or \n enter 2 to back in to main menu");
-                            int loginChoice = input.nextInt();
-                            if (loginChoice == 1) {
-                                login = customer.Login(PhoneNumber, Password);
-                            } else if (loginChoice == 2) {
-                                logout = true;
-                            }
+
+                        } catch (InputMismatchException e) {
+                            System.out.println("Oops you have inserted invalid input please try Again!");
                         }
-                    }
-                    break;
-                case 3:
+                        break;
+                    case 3:
 
-                    // Admin menu
+                        // Admin menu
 
-                    login = false;
-                    login = admin.Login(PhoneNumber, Password);// check weather the admin passowrd and phonenumber
-                    while (logout != true) {
-                        // exist
-                        // or not if exist it returns true
-                        if (login == true) {
+                        try {
+                            Boolean login = false;
+                            login = admin.Login(PhoneNumber, Password);// check weather the admin passowrd and
+                                                                       // phonenumber
                             while (logout != true) {
-                                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                                System.out.println("Enter 1 to view Flight information: ");
-                                System.out.println("Enter 2 to update your information: ");
-                                System.out.println("Enter 3 to Manage flight: ");
-                                System.out.println("Enter 4 to Manage Journey: ");
-                                System.out.println("Enter 5 to Manage Ticket: ");
-                                System.out.println("Enter 6 to see your personal info: ");
-                                System.out.println("Enter 7 to register an other Admin: ");
-                                System.out.println("Enter 8 to logout from your account: ");
+                                // exist
+                                // or not if exist it returns true
+                                if (login == true) {
+                                    while (logout != true) {
+                                        System.out.println("Enter 1 to view Flight information: ");
+                                        System.out.println("Enter 2 to update your information: ");
+                                        System.out.println("Enter 3 to Manage flight: ");
+                                        System.out.println("Enter 4 to Manage Journey: ");
+                                        System.out.println("Enter 5 to Manage Ticket: ");
+                                        System.out.println("Enter 6 to see your personal info: ");
+                                        System.out.println("Enter 7 to register an other Admin: ");
+                                        System.out.println("Enter 8 to logout from your account: ");
+                                        int Adminchoice = input.nextInt();
 
-                                int Adminchoice = input.nextInt();
+                                        switch (Adminchoice) {
+                                            case 1:
+                                                admin.ViewFlightInformation();// display all information about the
+                                                                              // flight
+                                                                              // reservation
+                                                break;
+                                            case 2:
+                                                System.out.println(admin.UpdatePersonalInfo(PhoneNumber, Password));
+                                                break;
+                                            case 3:
+                                                System.out.println("Enter 1 to Add flight schedule: ");
+                                                System.out.println("Enter 2 to update flight schedule: ");
+                                                System.out.println("Enter 3 to Delete flight schedule: ");
+                                                Adminchoice = input.nextInt();
+                                                switch (Adminchoice) {
+                                                    case 1:
+                                                        System.out
+                                                                .println(flight.AddFlightSchedule(scheduleId, journeyId,
+                                                                        DDate, departure,
+                                                                        arrival,
+                                                                        no_of_seat));
+                                                        break;
+                                                    case 2:
+                                                        System.out.println(flight.updateFlightScheduld(scheduleId));
+                                                        break;
+                                                    case 3:
+                                                        System.out.println(flight.DeleteFlightSchedul(scheduleId));
+                                                        break;
+                                                }
+                                                break;
+                                            case 4:
+                                                System.out.println("Enter 1 to Add journey schedule: ");
+                                                System.out.println("Enter 2 to update journey schedule: ");
+                                                System.out.println("Enter 3 to Delete journey schedule: ");
+                                                Adminchoice = input.nextInt();
+                                                switch (Adminchoice) {
+                                                    case 1:
+                                                        System.out.println(
+                                                                journey.Addjourney(journeyId, destination, from, rout,
+                                                                        cost));
+                                                        break;
+                                                    case 2:
+                                                        System.out.println(journey.updatejourney(journeyId));
+                                                        break;
+                                                    case 3:
+                                                        System.out.println(journey.Deleteupdatejourney(journeyId));
+                                                        break;
+                                                }
+                                                break;
+                                            case 5:
+                                                System.out.println("Enter 1 to Add Ticket schedule: ");
+                                                System.out.println("Enter 2 to update Ticket schedule: ");
+                                                System.out.println("Enter 3 to Delete Ticket schedule: ");
+                                                Adminchoice = input.nextInt();
+                                                switch (Adminchoice) {
+                                                    case 1:
+                                                        System.out.println(
+                                                                ticket.addTicket(ticketID, journeyId, Class, status,
+                                                                        scheduleId, seat_no));
+                                                        break;
+                                                    case 2:
+                                                        System.out.println(ticket.updateTicket(ticketID));
+                                                        break;
+                                                    case 3:
+                                                        System.out.println(ticket.DeleteTicket(ticketID));
+                                                        break;
+                                                }
+                                                break;
+                                            case 6:
+                                                admin.showMyPersonalInfo(PhoneNumber, Password);
+                                                break;
+                                            case 7:
+                                                System.out.println(admin.Register());
+                                                break;
+                                            case 8:
+                                                System.out.println("logged out succssefuly!");
+                                                logout = true;
+                                                break;
+                                        }
+                                    }
 
-                                switch (Adminchoice) {
-                                    case 1:
-                                        admin.ViewFlightInformation();// display all information about the flight
-                                                                      // reservation
-                                        break;
-                                    case 2:
-                                        System.out.println(admin.UpdatePersonalInfo(PhoneNumber, Password));
-                                        break;
-                                    case 3:
-                                        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                                        System.out.println("Enter 1 to Add flight schedule: ");
-                                        System.out.println("Enter 2 to update flight schedule: ");
-                                        System.out.println("Enter 3 to Delete flight schedule: ");
-                                        Adminchoice = input.nextInt();
-                                        switch (Adminchoice) {
-                                            case 1:
-                                                System.out.println(flight.AddFlightSchedule(scheduleId, journeyId,
-                                                        DDate, departure,
-                                                        arrival,
-                                                        no_of_seat));
-                                                break;
-                                            case 2:
-                                                System.out.println(flight.updateFlightScheduld(scheduleId));
-                                                break;
-                                            case 3:
-                                                System.out.println(flight.DeleteFlightSchedul(scheduleId));
-                                                break;
-                                        }
-                                        break;
-                                    case 4:
-                                        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                                        System.out.println("Enter 1 to Add journey schedule: ");
-                                        System.out.println("Enter 2 to update journey schedule: ");
-                                        System.out.println("Enter 3 to Delete journey schedule: ");
-                                        Adminchoice = input.nextInt();
-                                        switch (Adminchoice) {
-                                            case 1:
-                                                System.out.println(
-                                                        journey.Addjourney(journeyId, destination, from, rout, cost));
-                                                break;
-                                            case 2:
-                                                System.out.println(journey.updatejourney(journeyId));
-                                                break;
-                                            case 3:
-                                                System.out.println(journey.Deleteupdatejourney(journeyId));
-                                                break;
-                                        }
-                                        break;
-                                    case 5:
-                                        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                                        System.out.println("Enter 1 to Add Ticket schedule: ");
-                                        System.out.println("Enter 2 to update Ticket schedule: ");
-                                        System.out.println("Enter 3 to Delete Ticket schedule: ");
-                                        Adminchoice = input.nextInt();
-                                        switch (Adminchoice) {
-                                            case 1:
-                                                System.out.println(ticket.addTicket(ticketID, journeyId, Class, status,
-                                                        scheduleId, seat_no));
-                                                break;
-                                            case 2:
-                                                System.out.println(ticket.updateTicket(ticketID));
-                                                break;
-                                            case 3:
-                                                System.out.println(ticket.DeleteTicket(ticketID));
-                                                break;
-                                        }
-                                        break;
-                                    case 6:
-                                        admin.showMyPersonalInfo(PhoneNumber, Password);
-                                        break;
-                                    case 7:
-                                        System.out.println(admin.Register());
-                                        break;
-                                    case 8:
-                                        System.out.println("logged out succssefuly!");
+                                } else {
+                                    System.out.println(
+                                            "Please enetr 1 to try again or \n enter 2 to back in to main menu");
+                                    int loginChoice = input.nextInt();
+                                    if (loginChoice == 1) {
+                                        login = admin.Login(PhoneNumber, Password);
+                                    } else if (loginChoice == 2) {
                                         logout = true;
-                                        break;
+                                    }
                                 }
                             }
-                        } else {
-                            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                            System.out.println(
-                                    "Please enetr 1 to try again or \n enter 2 to back in to main menu");
-                            int loginChoice = input.nextInt();
-                            if (loginChoice == 1) {
-                                login = admin.Login(PhoneNumber, Password);
-                            } else if (loginChoice == 2) {
-                                logout = true;
-                            }
-                        }
-                    }
-                    break;
-                case 4:
-                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                    System.out.println("Thank you for choosing us. We miss you! ");
-                    exit = true;
-                    break;
 
+                        } catch (InputMismatchException e) {
+                            System.out.println("Oops you have inserted invalid input please try Again!");
+                        }
+                        break;
+                    case 4:
+                        System.out.println("Thank you for choosing us. We miss you! ");
+                        exit = true;
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Oops you have inserted invalid input please try Again!");
             }
+
         }
 
     }

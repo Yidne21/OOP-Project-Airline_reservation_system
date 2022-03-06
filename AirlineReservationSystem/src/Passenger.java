@@ -20,31 +20,36 @@ public class Passenger extends User {
         boolean validate = false;
         int Pphonenumber;
         String Ppasswored = null;
-        System.out.println("enter your phone number: ");
-        phonenumber = input.nextInt();
-        System.out.println("enter your password: ");
-        passwored = input.next();
-        Connection conn = gConnection.Connection();
-        PreparedStatement pt = null;
-        pt = conn.prepareStatement("select phone_no, password from passengertbl where phone_no=" + phonenumber);
-        ResultSet rSet = pt.executeQuery();
-        while (rSet.next()) {
-            Pphonenumber = rSet.getInt("phone_no");
-            Ppasswored = rSet.getString("password");
-        }
-        if (Ppasswored != null) {
-            System.out.println("checking.....");
-            if (Ppasswored.equals(passwored)) {
-                validate = true;
-                rSet.close();
-            } else {
-                validate = false;
-                System.out.println("Incorrect password");
+        try {
+
+            System.out.println("enter your phone number: ");
+            phonenumber = input.nextInt();
+            System.out.println("enter your password: ");
+            passwored = input.next();
+            Connection conn = gConnection.Connection();
+            PreparedStatement pt = null;
+            pt = conn.prepareStatement("select phone_no, password from passengertbl where phone_no=" + phonenumber);
+            ResultSet rSet = pt.executeQuery();
+            while (rSet.next()) {
+                Pphonenumber = rSet.getInt("phone_no");
+                Ppasswored = rSet.getString("password");
             }
-        } else {
-            System.out.println("checking");
-            System.out.println("Incorrect phonenuber");
-            validate = false;
+            if (Ppasswored != null) {
+                System.out.println("....checking.....");
+                if (Ppasswored.equals(passwored)) {
+                    validate = true;
+                    rSet.close();
+                } else {
+                    validate = false;
+                    System.out.println("Incorrect password");
+                }
+            } else {
+                System.out.println("checking");
+                System.out.println("Incorrect phonenuber");
+                validate = false;
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Oops you have inserted invalid input. please try again! ");
         }
         return validate;
 
@@ -77,7 +82,7 @@ public class Passenger extends User {
                     preparedStmt.setInt(2, PhoneNumber);
                     preparedStmt.executeUpdate();
                     success = "updated successfuly";
-                } catch (Exception e) {
+                } catch (SQLException | InputMismatchException e) {
                     success = "oops some thing went wrong please try again" + e;
                 }
                 break;
@@ -94,7 +99,7 @@ public class Passenger extends User {
                     preparedStmt.setInt(2, PhoneNumber);
                     preparedStmt.executeUpdate();
                     success = "updated successfuly";
-                } catch (Exception e) {
+                } catch (SQLException | InputMismatchException e) {
                     success = "oops some thing went wrong please try again" + e;
                 }
                 break;
@@ -113,7 +118,7 @@ public class Passenger extends User {
                     // execute the java preparedstatement
                     preparedStmt.executeUpdate();
                     success = "updated successfuly";
-                } catch (Exception e) {
+                } catch (SQLException | InputMismatchException e) {
                     success = "oops some thing went wrong please try again" + e;
                 }
                 break;
@@ -132,7 +137,7 @@ public class Passenger extends User {
                     // execute the java preparedstatement
                     preparedStmt.executeUpdate();
                     success = "updated successfuly";
-                } catch (Exception e) {
+                } catch (SQLException | InputMismatchException e) {
                     success = "oops some thing went wrong please try again" + e;
                 }
                 break;
@@ -151,7 +156,7 @@ public class Passenger extends User {
                     // execute the java preparedstatement
                     preparedStmt.executeUpdate();
                     success = "updated successfuly";
-                } catch (Exception e) {
+                } catch (SQLException | InputMismatchException e) {
                     success = "oops some thing went wrong please try again" + e;
                 }
                 break;
@@ -168,7 +173,7 @@ public class Passenger extends User {
                     preparedStmt.setInt(2, PhoneNumber);
                     preparedStmt.executeUpdate();
                     success = "updated successfuly";
-                } catch (Exception e) {
+                } catch (SQLException | InputMismatchException e) {
                     success = "oops some thing went wrong please try again" + e;
                 }
                 break;
@@ -187,7 +192,7 @@ public class Passenger extends User {
                     // execute the java preparedstatement
                     preparedStmt.executeUpdate();
                     success = "updated successfuly";
-                } catch (Exception e) {
+                } catch (SQLException | InputMismatchException e) {
                     success = "oops some thing went wrong please try again" + e;
                 }
                 break;
@@ -208,7 +213,7 @@ public class Passenger extends User {
                     // execute the java preparedstatement
                     preparedStmt.executeUpdate();
                     success = "updated successfuly";
-                } catch (Exception e) {
+                } catch (SQLException | InputMismatchException e) {
                     success = "oops some thing went wrong please try again" + e;
                 }
                 break;
@@ -299,7 +304,7 @@ public class Passenger extends User {
             preparedStmt.setInt(1, PhoneNumber);
             iscanceled = preparedStmt.execute();
             success = "Ticket canceled successfuly";
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | InputMismatchException e) {
             success = "Ticket canceled failed please try again" + e;
         }
         if (iscanceled == true) {
@@ -310,10 +315,10 @@ public class Passenger extends User {
 
     @Override
     void showMyPersonalInfo(int Phone_no, String Password) {
-        System.out.println("Enter your phone number: ");
-        PhoneNumber = input.nextInt();
-        Connection conn;
         try {
+            System.out.println("Enter your phone number: ");
+            PhoneNumber = input.nextInt();
+            Connection conn;
             conn = gConnection.Connection();
             Statement statement = (Statement) conn.createStatement();
             String query = "select fname, lname, email, residence, nationality, sex, date_of_birth, phone_no from passengertbl where phone_no="
@@ -334,7 +339,7 @@ public class Passenger extends User {
                 System.out.printf("\n%d \t%s \t%s \t%s\t \t%s \t%s \t%s \t%s\n", PhoneNumber, FirstName, LastName,
                         Email, Residence, Nationality, Sex, date_of_birth);
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException | InputMismatchException e) {
             System.out.println("Oops some thing went wrong please try again");
         }
         System.out.println();
@@ -381,7 +386,7 @@ public class Passenger extends User {
             pstmt.executeUpdate();
             succed = "Registered succssesfuly, now you can login to your user account and get our servicecs";
 
-        } catch (SQLException e) {
+        } catch (SQLException | InputMismatchException e) {
             succed = "oops something went wrong please try";
         }
 

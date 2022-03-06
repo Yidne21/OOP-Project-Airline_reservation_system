@@ -11,8 +11,8 @@ public class Passenger extends User {
     DatabaseConnection gConnection = new DatabaseConnection();
 
     Passenger(String FirstName, String LastName, String Password, String Email, String Residence, String Nationality,
-            String Sex, Date Age, int PhoneNumber) {
-        super(FirstName, LastName, Password, Email, Residence, Nationality, Sex, Age, PhoneNumber);
+            String Sex, Date date_of_birth, int PhoneNumber) {
+        super(FirstName, LastName, Password, Email, Residence, Nationality, Sex, date_of_birth, PhoneNumber);
     }
 
     @Override
@@ -197,12 +197,12 @@ public class Passenger extends User {
                     PhoneNumber = input.nextInt();
                     System.out.println("Enter your date of birth in the format yyyy-mm-dd");
                     String sDate1 = input.next();
-                    Age = Date.valueOf(sDate1);
+                    date_of_birth = Date.valueOf(sDate1);
                     Connection conn = gConnection.Connection();
                     String strUpdate = "update passengertbl set date_of_birth = ? where phone_no = ? "
                             + PhoneNumber;
                     PreparedStatement preparedStmt = conn.prepareStatement(strUpdate);
-                    preparedStmt.setDate(1, Age);
+                    preparedStmt.setDate(1, date_of_birth);
                     preparedStmt.setInt(2, PhoneNumber);
 
                     // execute the java preparedstatement
@@ -330,10 +330,10 @@ public class Passenger extends User {
                 Residence = rset.getString("residence");
                 Nationality = rset.getString("nationality");
                 Sex = rset.getString("sex");
-                Age = rset.getDate("date_of_birth");
+                date_of_birth = rset.getDate("date_of_birth");
 
                 System.out.printf("\n%d \t%s \t%s \t%s\t \t%s \t%s \t%s \t%s\n", PhoneNumber, FirstName, LastName,
-                        Email, Residence, Nationality, Sex, Age);
+                        Email, Residence, Nationality, Sex, date_of_birth);
             }
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Oops some thing went wrong please try again");
@@ -364,7 +364,7 @@ public class Passenger extends User {
             PhoneNumber = input.nextInt();
             System.out.println("Enter your date of birth in the format yyyy-mm-dd");
             String sDate1 = input.next();
-            Age = Date.valueOf(sDate1);
+            date_of_birth = Date.valueOf(sDate1);
             Connection conn = gConnection.Connection();
             String sqlInsert = "insert into passengertbl (fname, lname, password, email, residence, nationality, sex, date_of_birth, phone_no)"
                     + " value (?,?,?,?,?,?,?,?,?)";
@@ -377,7 +377,7 @@ public class Passenger extends User {
             pstmt.setString(5, Residence);
             pstmt.setString(6, Nationality);
             pstmt.setString(7, Sex);
-            pstmt.setDate(8, Age);
+            pstmt.setDate(8, date_of_birth);
             pstmt.setInt(9, PhoneNumber);
             pstmt.executeUpdate();
             succed = "Registered succssesfuly, now you can login to your user account and get our servicecs";
@@ -387,12 +387,6 @@ public class Passenger extends User {
         }
 
         return succed;
-    }
-
-    @Override
-    void ViewFlightInformation() {
-        // TODO Auto-generated method stub
-
     };
 
 }

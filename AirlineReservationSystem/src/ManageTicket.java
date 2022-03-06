@@ -1,4 +1,5 @@
 import java.sql.SQLException;
+import java.util.Scanner;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -42,21 +43,52 @@ public class ManageTicket {
         System.out.print("Total number of avilable Tickets Are: " + avilableTicket + "\n");
         System.out.println();
     };
-
-    String addTicket(int ticketID, int journeyId, String Class, String status, int scheduleId, int seat_no) {
+    // i have to check it again.
+    String addTicket() throws ClassNotFoundException, SQLException {
+        DatabaseConnection gConnection = new DatabaseConnection();
+        Connection conn = gConnection.Connection();
+         Statement statement = (Statement) conn.createStatement();
+         String query = "create table tickettbl";
+         ResultSet rset = statement.executeupdate(query);
+        System.out.printf(
+                "\nTicketID\t  class\t     \tstatus\t      \tseat_no\t   \tscheduleId\t   \tjourneyId");
+         while (rset.next()) {
+            TicketId = rset.getInt("TicketID");
+        journeyId = rset.getInt("journeyId");
+            Class = rset.getString("class");
+             Status = rset.getString("status");
+             scheduleId = rset.getInt("schedulId");
+            SeatNumber = rset.getInt("seat_no"); 
+             System.out.printf("\n%d\t%18s\t%10s\t%7d\t%18d\t%15d\n", TicketId, Class, Status, SeatNumber, scheduleId,
+                     journeyId);
+         }
+         System.out.println();
         return "Ticket Added succssesfuly";
-    }
-
-    String updateTicket(int ticketID) throws ClassNotFoundException, SQLException {
+    };
+ // i have to check it again.
+    String updateTicket(int ticketID)throws ClassNotFoundException, SQLException {
+          DatabaseConnection gConnection = new DatabaseConnection();
+         Connection conn = gConnection.Connection();
+         Statement statement = (Statement) conn.createStatement();
+         Scanner input = new Scanner(System.in);
+       System.out.println("Enter ticketID you want to update:");
+         ticketID=input.nextInt();
+        String updateticket = "update table tickettbl  qty = qty+1 where ticketID =ticketID";
+        ResultSet rset = statement.executeUpdate(updateticket);
        
-        return null;
-
+        return "Ticket updated succssesfuly";
     }
-
-    String DeleteTicket(int ticketID) throws ClassNotFoundException, SQLException {
-        boolean isdeleted = false;
-       
-        return null;
+    //i have to check it again.
+    String DeleteTicket(int ticketID)throws ClassNotFoundException, SQLException {
+          DatabaseConnection gConnection = new DatabaseConnection();
+         Connection conn = gConnection.Connection();
+        Statement statement = (Statement) conn.createStatement();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter ticketID you want to delete:");
+         ticketID=input.nextInt();
+        String deleteticket = "update table tickettbl  qty = qty+1 where ticketID =ticketID";
+         boolean rset = statement.execute(deleteticket);
+        return "Ticket deleted succssesfuly";
 
     }
 }

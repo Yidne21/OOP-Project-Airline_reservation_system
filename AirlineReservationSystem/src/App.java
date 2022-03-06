@@ -1,9 +1,8 @@
 import java.sql.Date;
 import java.sql.Time;
-
 import java.util.Scanner;
 
-public class App extends DatabaseConnection {
+public class App {
     public static void main(String[] args) throws Exception {
 
         boolean exit = false;
@@ -33,6 +32,7 @@ public class App extends DatabaseConnection {
                     Nationality = null, role = null, Class = null, status = null, from = null, destination = null,
                     rout = null;
             String Sex = null;
+            Date Age = null;
             int salary = 0, ticketID = 0, seat_no = 0, journeyId = 0, scheduleId = 0, SeatNumber = 0,
                     TicketId = 0, PhoneNumber = 0, no_of_seat = 0;
             Date Age = null, DDate = null;
@@ -57,8 +57,7 @@ public class App extends DatabaseConnection {
             switch (choice) {
                 // new passenger registratin
                 case 1:
-
-                    customer.Register();// register for new user passenger registratin
+                    System.out.println(customer.Register());
                     break;
                 case 2:
 
@@ -78,7 +77,8 @@ public class App extends DatabaseConnection {
                                 System.out.println("Enter 2 to cancel ticket: ");
                                 System.out.println("Enter 3 to update your personal info: ");
                                 System.out.println("Enter 4 to see your ticket info: ");
-                                System.out.println("Enter 5 to logout: ");
+                                System.out.println("Enter 5 to see your personal info: ");
+                                System.out.println("Enter 6 to logout: ");
                                 ch = input.nextInt();
                                 switch (ch) {
                                     case 1:
@@ -98,6 +98,9 @@ public class App extends DatabaseConnection {
                                         customer.ShowMyTicket(PhoneNumber, Password, TicketId);
                                         break;
                                     case 5:
+                                        customer.showMyPersonalInfo(PhoneNumber, Password);
+                                        break;
+                                    case 6:
                                         System.out.println("logged out succssefuly!: ");
                                         logout = true;
                                         break;
@@ -141,8 +144,8 @@ public class App extends DatabaseConnection {
 
                             switch (Adminchoice) {
                                 case 1:
-                                    admin.ViewFlightInformation();// display all information about the flight
-                                                                  // reservation
+                                    // admin.ViewFlightInformation();// display all information about the flight
+                                    // reservation
                                     break;
                                 case 2:
                                     System.out.println(admin.UpdatePersonalInfo(PhoneNumber, Password));
@@ -191,7 +194,7 @@ public class App extends DatabaseConnection {
                                     Adminchoice = input.nextInt();
                                     switch (Adminchoice) {
                                         case 1:
-                                            journey.Addjourney(journeyId, destination, from, rout, cost);
+                                            journey.Addjourney(journeyId, destination, rout, cost);
                                             break;
 
                                         case 2:

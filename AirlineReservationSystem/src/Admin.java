@@ -7,8 +7,8 @@ public class Admin extends User {
     String role;
 
     Admin(String FirstName, String LastName, String Password, String Email, String Residence, String Nationality,
-            String sex, Date age, int PhoneNumber, float salary, String role) {
-        super(FirstName, LastName, Password, Email, Residence, Nationality, sex, age, PhoneNumber);
+            String Sex, Date age, int PhoneNumber, float salary, String role) {
+        super(FirstName, LastName, Password, Email, Residence, Nationality, Sex, age, PhoneNumber);
         this.salary = salary;
         this.role = role;
     }
@@ -29,12 +29,6 @@ public class Admin extends User {
     String UpdatePersonalInfo(int phonenumber, String passwored) {
         // TODO Auto-generated method stub
         return null;
-    }
-
-    @Override
-    void ViewFlightInformation() {
-        // TODO Auto-generated method stub
-
     }
 
     @Override

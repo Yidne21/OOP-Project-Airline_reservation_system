@@ -39,7 +39,7 @@ public class ManageTicket {
         System.out.print("Total number of avilable Tickets Are: " + avilableTicket + "\n");
         System.out.println();
     };
-  
+
     String addTicket(int ticketID, int journeyId, String Class, String status, int scheduleId, int seat_no) {
         String success = null;
         try {
@@ -74,9 +74,15 @@ public class ManageTicket {
         }
         return success;
     }
-    String DeleteTicket(int ticketID)throws ClassNotFoundException, SQLException {
-          DatabaseConnection gConnection = new DatabaseConnection();
-         Connection conn = gConnection.Connection();
+
+    String UpdateTicket(int ticketID) {
+        String success = null;
+        return success;
+    }
+
+    String DeleteTicket(int ticketID) throws ClassNotFoundException, SQLException {
+        DatabaseConnection gConnection = new DatabaseConnection();
+        Connection conn = gConnection.Connection();
         Statement statement = (Statement) conn.createStatement();
         Scanner input = new Scanner(System.in);
         return "Ticket deleted succssesfuly";

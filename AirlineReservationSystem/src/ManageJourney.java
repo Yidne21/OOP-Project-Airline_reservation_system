@@ -1,5 +1,7 @@
 import java.sql.SQLException;
+import java.io.IOException;
 import java.sql.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ManageJourney {
@@ -29,6 +31,7 @@ public class ManageJourney {
         }
         System.out.println();
     };
+
     String Addjourney(int journeyId, String destination, String From, String rout, float cost)
             throws ClassNotFoundException, SQLException {
         String Added = null;
@@ -55,14 +58,14 @@ public class ManageJourney {
             pstmt.executeUpdate();
             Added = "Your journey is added successfully\n";
 
-        } catch (SQLException e) {
+        } catch (SQLException | InputMismatchException e) {
             Added = "Something goes wrong,Please make sure you Added the correct information\n";
         }
         return Added;
     };
 
     // it not working
-    String updatejourney(int journeyId) throws ClassNotFoundException, SQLException {
+    String updatejourney(int journeyId) throws ClassNotFoundException, SQLException, IOException {
         String updated = null;
         System.out.println("what type of data do you want to update");
         System.out.println("Enter 1 to update destination of the journey");
@@ -84,7 +87,7 @@ public class ManageJourney {
                     psmt.setInt(2, journeyId);
                     psmt.executeUpdate();
                     updated = "your Updation done  succssefuly\n";
-                } catch (SQLException e) {
+                } catch (SQLException | InputMismatchException e) {
                     updated = "Updattion is failed please try again\n";
                 }
                 break;
@@ -99,7 +102,7 @@ public class ManageJourney {
                     psmt.setInt(2, journeyId);
                     psmt.executeUpdate();
                     updated = "Updated succssefuly\n";
-                } catch (SQLException e) {
+                } catch (SQLException | InputMismatchException e) {
                     updated = "Updatting failed please try again\n";
                 }
                 break;
@@ -114,7 +117,7 @@ public class ManageJourney {
                     psmt.setInt(2, journeyId);
                     psmt.executeUpdate();
                     updated = "Updated succssefuly\n";
-                } catch (SQLException e) {
+                } catch (SQLException | InputMismatchException e) {
                     updated = "Updatting failed please try again\n";
                 }
                 break;
@@ -129,7 +132,7 @@ public class ManageJourney {
                     psmt.setInt(2, journeyId);
                     psmt.executeUpdate();
                     updated = "Updated succssefuly\n";
-                } catch (SQLException e) {
+                } catch (SQLException | InputMismatchException e) {
                     updated = "Updatting failed please try again\n";
                 }
                 break;
@@ -153,7 +156,7 @@ public class ManageJourney {
             preparedStmt.setInt(1, journeyId);
             isdeleted = preparedStmt.execute();
             deleted = "journey deleted successfuly\n";
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | InputMismatchException e) {
             deleted = "journey deletion failed please try again\n";
         }
         if (isdeleted == true) {

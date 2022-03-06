@@ -2,6 +2,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.SQLException;
 import java.sql.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ScheduleFlight {
@@ -21,7 +22,7 @@ public class ScheduleFlight {
         Statement statement = (Statement) conn.createStatement();
         String query = "select * from scheduletbl";
         ResultSet rset = statement.executeQuery(query);
-        System.out.println("ScheduleId" + "JourneyId" + "date" + "Departure" + "Arrival" + "SeatNumber");
+        System.out.println("ScheduleId/t  JourneyId\t  date\t   Departure\t  Arrival\t   SeatNumber");
 
         while (rset.next()) {
             scheduleId = rset.getInt("schedulId");
@@ -69,7 +70,7 @@ public class ScheduleFlight {
             pstmt.executeUpdate();
             Added = "Your  schedule is added successfully\n";
 
-        } catch (SQLException e) {
+        } catch (SQLException | InputMismatchException e) {
             Added = "Something goes wrong,Please make sure you Added the correct information\n";
         }
         return Added;
@@ -83,8 +84,13 @@ public class ScheduleFlight {
         System.out.println("Enter 3 to update the arrival time: ");
         System.out.println("Enter 4 to update the seat number: ");
         int key = input.nextInt();
-        System.out.println("Enter the scheduleId of the schedule:");
-        scheduleId = input.nextInt();
+        try {
+            System.out.println("Enter the scheduleId of the schedule:");
+            scheduleId = input.nextInt();
+
+        } catch (InputMismatchException e) {
+            System.out.println("Ooops you have inserted invalid input please try again!");
+        }
         switch (key) {
             case 1:
                 try {
@@ -98,7 +104,7 @@ public class ScheduleFlight {
                     psmt.setInt(2, scheduleId);
                     psmt.executeUpdate();
                     updated = "your Updation done succssefuly\n";
-                } catch (SQLException e) {
+                } catch (SQLException | InputMismatchException e) {
                     updated = "Updattion is failed please try again\n";
                 }
                 break;
@@ -114,7 +120,7 @@ public class ScheduleFlight {
                     psmt.setInt(2, scheduleId);
                     psmt.executeUpdate();
                     updated = "your Updation done  succssefuly\n";
-                } catch (SQLException e) {
+                } catch (SQLException | InputMismatchException e) {
                     updated = "Updattion is failed please try again\n";
                 }
                 break;
@@ -130,7 +136,7 @@ public class ScheduleFlight {
                     psmt.setInt(2, scheduleId);
                     psmt.executeUpdate();
                     updated = "Updated succssefuly\n";
-                } catch (SQLException e) {
+                } catch (SQLException | InputMismatchException e) {
                     updated = "Updatting failed please try again\n";
                 }
                 break;
@@ -145,7 +151,7 @@ public class ScheduleFlight {
                     psmt.setInt(2, scheduleId);
                     psmt.executeUpdate();
                     updated = "Updated succssefuly\n";
-                } catch (SQLException e) {
+                } catch (SQLException | InputMismatchException e) {
                     updated = "Updatting failed please try again\n";
                 }
                 break;
@@ -169,7 +175,7 @@ public class ScheduleFlight {
             preparedStmt.setInt(1, scheduleId);
             isdeleted = preparedStmt.execute();
             deleted = "schedule deleted successfuly\n";
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | InputMismatchException e) {
             deleted = "schedule deletion failed please try again\n";
         }
         if (isdeleted == true) {

@@ -1,5 +1,6 @@
 import java.sql.SQLException;
 import java.sql.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ManageTicket {
@@ -64,7 +65,7 @@ public class ManageTicket {
                     psmt.setInt(2, ticketID);
                     psmt.executeUpdate();
                     updated = "your Updation done  succssefuly";
-                } catch (SQLException e) {
+                } catch (SQLException | InputMismatchException e) {
                     updated = "Updattion is failed please try again";
                 }
                 break;
@@ -79,7 +80,7 @@ public class ManageTicket {
                     psmt.setInt(2, ticketID);
                     psmt.executeUpdate();
                     updated = "Updated succssefuly";
-                } catch (SQLException e) {
+                } catch (SQLException | InputMismatchException e) {
                     updated = "Updatting failed please try again";
                 }
                 break;
@@ -94,7 +95,7 @@ public class ManageTicket {
                     psmt.setInt(2, ticketID);
                     psmt.executeUpdate();
                     updated = "Updated succssefuly";
-                } catch (SQLException e) {
+                } catch (SQLException | InputMismatchException e) {
                     updated = "Updatting failed please try again";
                 }
                 break;
@@ -135,7 +136,7 @@ public class ManageTicket {
             pstmt.setInt(6, journeyId);
             pstmt.executeUpdate();
             success = "Ticket Added succssesfuly";
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException | InputMismatchException e) {
             success = "Ticket adding failed";
         }
         return success;
@@ -154,7 +155,7 @@ public class ManageTicket {
             preparedStmt.setInt(1, ticketID);
             isdeleted = preparedStmt.execute();
             deleted = "ticket deleted successfuly";
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | InputMismatchException e) {
             deleted = "Ticket deletion failed please try again" + e;
         }
         if (isdeleted == true) {

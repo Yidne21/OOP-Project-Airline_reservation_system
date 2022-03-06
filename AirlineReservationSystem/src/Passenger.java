@@ -7,14 +7,13 @@ import java.text.ParseException;
 public class Passenger extends User {
     static int BookedTicket = 0;
     static int canceledTicket = 0;
+    Scanner input = new Scanner(System.in);
     DatabaseConnection gConnection = new DatabaseConnection();
 
     Passenger(String FirstName, String LastName, String Password, String Email, String Residence, String Nationality,
             String Sex, Date date_of_birth, int PhoneNumber) {
         super(FirstName, LastName, Password, Email, Residence, Nationality, Sex, date_of_birth, PhoneNumber);
     }
-
-    Scanner input = new Scanner(System.in);
 
     @Override
     boolean Login(int phonenumber, String passwored) throws ClassNotFoundException, SQLException {

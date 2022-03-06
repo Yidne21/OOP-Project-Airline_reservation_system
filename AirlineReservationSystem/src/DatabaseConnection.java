@@ -5,7 +5,7 @@ public class DatabaseConnection {
 
     private static final String url = "jdbc:mysql://localhost:3306/ars";
     private static final String user = "root";
-    private static final String password = "";
+    private static final String password = "Zoli3113@Mani";
     private static final String driver = "com.mysql.cj.jdbc.Driver";
     // Database credentials
 

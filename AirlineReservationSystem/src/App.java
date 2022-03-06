@@ -6,6 +6,7 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         boolean exit = false;
+
         while (exit != true) {// ways of exit
 
             // system user interaction
@@ -34,7 +35,7 @@ public class App {
             Date Age = null;
             int salary = 0, ticketID = 0, seat_no = 0, journeyId = 0, scheduleId = 0, SeatNumber = 0,
                     TicketId = 0, PhoneNumber = 0, no_of_seat = 0;
-            Date DDate = null;
+            Date Age = null, DDate = null;
             Time departure = null, arrival = null;
             float cost = 0.0f;
             Passenger customer = new Passenger(FirstName, LastName, Password, Email, Residence, Nationality, Sex, Age,

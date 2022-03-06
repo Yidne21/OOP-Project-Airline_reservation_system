@@ -14,7 +14,6 @@ public class ManageTicket {
     DatabaseConnection gConnection = new DatabaseConnection();
 
     void displayAvailabeFlightTickets() throws ClassNotFoundException, SQLException {
-        DatabaseConnection gConnection = new DatabaseConnection();
         Connection conn = gConnection.Connection();
         Statement statement = (Statement) conn.createStatement();
         String query = "select * from tickettbl";

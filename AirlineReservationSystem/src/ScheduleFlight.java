@@ -3,6 +3,7 @@ import java.sql.Time;
 import java.util.Scanner;
 import java.sql.SQLException;
 import java.sql.*;
+import java.util.Scanner;
 
 public class ScheduleFlight {
     int scheduleId;
@@ -12,14 +13,16 @@ public class ScheduleFlight {
     Time Departure;
     Time Arrival;
     int SeatNumber;
+    int Deletedschedule = 0;
+    Scanner input = new Scanner(System.in);
+    DatabaseConnection gConnection = new DatabaseConnection();
 
     void displayFlightSchedule() throws ClassNotFoundException, SQLException {
-        DatabaseConnection gConnection = new DatabaseConnection();
         Connection conn = gConnection.Connection();
         Statement statement = (Statement) conn.createStatement();
         String query = "select * from scheduletbl";
         ResultSet rset = statement.executeQuery(query);
-        System.out.println("ScheduleId    JourneyId     date      Departure      Arrival      SeatNumber");
+        System.out.println("ScheduleId" + "JourneyId" + "date" + "Departure" + "Arrival" + "SeatNumber");
 
         while (rset.next()) {
             scheduleId = rset.getInt("schedulId");
@@ -44,6 +47,10 @@ public class ScheduleFlight {
         Statement statement = (Statement) conn.createStatement();
         return "Flight scheduled succssesfuly";
 
+        } catch (SQLException e) {
+            Added = "Something goes wrong,Please make sure you Added the correct information\n";
+        }
+        return Added;
     }
 
     // i have to check it again.

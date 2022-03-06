@@ -189,8 +189,9 @@ public class App extends DatabaseConnection {
                                     Adminchoice = input.nextInt();
                                     switch (Adminchoice) {
                                         case 1:
-                                            journey.Addjourney(journeyId, from, destination, rout, cost);
+                                            journey.Addjourney(journeyId, destination, rout, cost);
                                             break;
+
                                         case 2:
                                             journey.updatejourney(journeyId);
                                             break;
@@ -198,6 +199,7 @@ public class App extends DatabaseConnection {
                                             journey.Deleteupdatejourney(journeyId);
                                             break;
                                     }
+
                                     break;
                                 case 6:
                                     System.out.println("Enter 1 to Add Ticket schedule: ");

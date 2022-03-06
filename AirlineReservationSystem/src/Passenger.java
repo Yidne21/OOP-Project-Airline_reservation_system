@@ -163,7 +163,7 @@ public class Passenger extends User {
         System.out.print("Enter your Nationality: ");
         Nationality = input.next();
         System.out.print("Enter your Sex: ");
-        // Sex = input.;
+        Sex = input.nextLine();
         System.out.print("Enter your Age: ");
         Age = input.nextInt();
         System.out.print("Enter your PhoneNumber: ");

@@ -159,15 +159,16 @@ public class App {
                                         Adminchoice = input.nextInt();
                                         switch (Adminchoice) {
                                             case 1:
-                                                flight.AddFlightSchedule(scheduleId, journeyId, DDate, departure,
+                                                System.out.println(flight.AddFlightSchedule(scheduleId, journeyId,
+                                                        DDate, departure,
                                                         arrival,
-                                                        no_of_seat);
+                                                        no_of_seat));
                                                 break;
                                             case 2:
-                                                flight.updateFlightScheduld(scheduleId);
+                                                System.out.println(flight.updateFlightScheduld(scheduleId));
                                                 break;
                                             case 3:
-                                                flight.DeleteFlightSchedul(scheduleId);
+                                                System.out.println(flight.DeleteFlightSchedul(scheduleId));
                                                 break;
                                         }
                                         break;
@@ -182,10 +183,10 @@ public class App {
                                                         journey.Addjourney(journeyId, destination, from, rout, cost));
                                                 break;
                                             case 2:
-                                                journey.updatejourney(journeyId);
+                                                System.out.println(journey.updatejourney(journeyId));
                                                 break;
                                             case 3:
-                                                journey.Deleteupdatejourney(journeyId);
+                                                System.out.println(journey.Deleteupdatejourney(journeyId));
                                                 break;
                                         }
                                         break;
@@ -200,10 +201,10 @@ public class App {
                                                         scheduleId, seat_no));
                                                 break;
                                             case 2:
-                                                ticket.updateTicket(ticketID);
+                                                System.out.println(ticket.updateTicket(ticketID));
                                                 break;
                                             case 3:
-                                                ticket.DeleteTicket(ticketID);
+                                                System.out.println(ticket.DeleteTicket(ticketID));
                                                 break;
                                         }
                                         break;

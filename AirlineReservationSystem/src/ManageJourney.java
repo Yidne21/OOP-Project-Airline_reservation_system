@@ -26,7 +26,7 @@ public class ManageJourney {
             Destination = rset.getString("destination");
             RouteInfo = rset.getString("rout");
             cost = rset.getFloat("cost");
-            System.out.printf("\n%d  \t%s \t%s \t%s\t \t%f\n", journeyId, From, Destination, RouteInfo, cost);
+            System.out.printf("\n%d    \t%s   \t%s   \t%s\t    \t%f\n", journeyId, From, Destination, RouteInfo, cost);
         }
         System.out.println();
     };

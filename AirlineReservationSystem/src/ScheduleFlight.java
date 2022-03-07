@@ -22,7 +22,7 @@ public class ScheduleFlight {
         Statement statement = (Statement) conn.createStatement();
         String query = "select * from scheduletbl";
         ResultSet rset = statement.executeQuery(query);
-        System.out.println("ScheduleId/t  JourneyId\t  date\t   Departure\t  Arrival\t   SeatNumber");
+        System.out.println("ScheduleId/t  JourneyId\t    date\t     Departure\t    Arrival\t   SeatNumber");
 
         while (rset.next()) {
             scheduleId = rset.getInt("schedulId");
@@ -32,9 +32,9 @@ public class ScheduleFlight {
             Arrival = rset.getTime("arrival");
             SeatNumber = rset.getInt("no_of_seat");
             System.out.println(
-                    scheduleId + "     " + journeyId + "     " + date + "      " + Departure
-                            + "     " + Arrival
-                            + "       " + SeatNumber);
+                    scheduleId + "     " + journeyId + "    " + date + "         " + Departure
+                            + "         " + Arrival
+                            + "          " + SeatNumber);
         }
         System.out.println();
     };

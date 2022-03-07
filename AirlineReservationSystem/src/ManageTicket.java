@@ -12,7 +12,7 @@ public class ManageTicket {
     String Status;
     int Addedticket = 0;
     int Deletedticket = 0;
-    int updatedticket = 0;
+    int avilableTicket = 0;
     String rset = null;
     DatabaseConnection gConnection = new DatabaseConnection();
 
@@ -38,7 +38,7 @@ public class ManageTicket {
             ++TotalNumberOfTicket;
         }
         System.out.println();
-        int avilableTicket = TotalNumberOfTicket - Passenger.BookedTicket;
+        avilableTicket = TotalNumberOfTicket - Passenger.BookedTicket;
         System.out.println("..................................................................................");
         System.out.print("Total number of avilable Tickets Are: " + avilableTicket + "\n");
         System.out.println();
@@ -161,6 +161,7 @@ public class ManageTicket {
         if (isdeleted == true) {
             Deletedticket++;
         }
+        System.out.println("You have deleted " + Deletedticket + " tickets");
         return deleted;
 
     }

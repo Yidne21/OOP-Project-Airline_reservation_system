@@ -10,7 +10,6 @@ public class ManageJourney {
     int journeyId;
     int Addedjourney = 0;
     int Deletedjourney = 0;
-    int updatedjourney = 0;
     String rset = null;
     DatabaseConnection gConnection = new DatabaseConnection();
     Scanner input = new Scanner(System.in);
@@ -162,6 +161,7 @@ public class ManageJourney {
         if (isdeleted == true) {
             Deletedjourney++;
         }
+        System.out.println("You have deleted " + Deletedjourney + " Journeys");
         return deleted;
     }
 }

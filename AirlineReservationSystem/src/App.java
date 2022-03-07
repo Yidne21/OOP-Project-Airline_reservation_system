@@ -179,12 +179,15 @@ public class App {
                                                                         DDate, departure,
                                                                         arrival,
                                                                         no_of_seat));
+                                                        System.out.println();
                                                         break;
                                                     case 2:
                                                         System.out.println(flight.updateFlightScheduld(scheduleId));
+                                                        System.out.println();
                                                         break;
                                                     case 3:
                                                         System.out.println(flight.DeleteFlightSchedul(scheduleId));
+                                                        System.out.println();
                                                         break;
                                                 }
                                                 break;
@@ -198,12 +201,15 @@ public class App {
                                                         System.out.println(
                                                                 journey.Addjourney(journeyId, destination, from, rout,
                                                                         cost));
+                                                        System.out.println();
                                                         break;
                                                     case 2:
                                                         System.out.println(journey.updatejourney(journeyId));
+                                                        System.out.println();
                                                         break;
                                                     case 3:
                                                         System.out.println(journey.Deleteupdatejourney(journeyId));
+                                                        System.out.println();
                                                         break;
                                                 }
                                                 break;
@@ -217,20 +223,25 @@ public class App {
                                                         System.out.println(
                                                                 ticket.addTicket(ticketID, journeyId, Class, status,
                                                                         scheduleId, seat_no));
+                                                        System.out.println();
                                                         break;
                                                     case 2:
                                                         System.out.println(ticket.updateTicket(ticketID));
+                                                        System.out.println();
                                                         break;
                                                     case 3:
                                                         System.out.println(ticket.DeleteTicket(ticketID));
+                                                        System.out.println();
                                                         break;
                                                 }
                                                 break;
                                             case 6:
                                                 admin.showMyPersonalInfo(PhoneNumber, Password);
+                                                System.out.println();
                                                 break;
                                             case 7:
                                                 System.out.println(admin.Register());
+                                                System.out.println();
                                                 break;
                                             case 8:
                                                 System.out.println("logged out succssefuly!");
